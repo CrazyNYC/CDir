@@ -1,0 +1,1337 @@
+{
+    "machine_info": {
+        "node": "DESKTOP-G16APTG",
+        "processor": "Intel64 Family 6 Model 61 Stepping 4, GenuineIntel",
+        "machine": "AMD64",
+        "python_compiler": "MSC v.1940 64 bit (AMD64)",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.12.4",
+        "python_version": "3.12.4",
+        "python_build": [
+            "tags/v3.12.4:8e8a4ba",
+            "Jun  6 2024 19:30:16"
+        ],
+        "release": "11",
+        "system": "Windows",
+        "cpu": {
+            "python_version": "3.12.4.final.0 (64 bit)",
+            "cpuinfo_version": [
+                9,
+                0,
+                0
+            ],
+            "cpuinfo_version_string": "9.0.0",
+            "arch": "X86_64",
+            "bits": 64,
+            "count": 4,
+            "arch_string_raw": "AMD64",
+            "vendor_id_raw": "GenuineIntel",
+            "brand_raw": "Intel(R) Core(TM) i7-5500U CPU @ 2.40GHz",
+            "hz_advertised_friendly": "2.4000 GHz",
+            "hz_actual_friendly": "2.3940 GHz",
+            "hz_advertised": [
+                2400000000,
+                0
+            ],
+            "hz_actual": [
+                2394000000,
+                0
+            ],
+            "flags": [
+                "3dnow",
+                "3dnowprefetch",
+                "abm",
+                "acpi",
+                "adx",
+                "aes",
+                "apic",
+                "avx",
+                "avx2",
+                "bmi1",
+                "bmi2",
+                "clflush",
+                "cmov",
+                "cx16",
+                "cx8",
+                "de",
+                "dts",
+                "erms",
+                "est",
+                "f16c",
+                "fma",
+                "fpu",
+                "fxsr",
+                "ht",
+                "hypervisor",
+                "ia64",
+                "invpcid",
+                "lahf_lm",
+                "mca",
+                "mce",
+                "mmx",
+                "monitor",
+                "movbe",
+                "msr",
+                "mtrr",
+                "osxsave",
+                "pae",
+                "pat",
+                "pbe",
+                "pcid",
+                "pclmulqdq",
+                "pdcm",
+                "pge",
+                "pni",
+                "popcnt",
+                "pse",
+                "pse36",
+                "rdrnd",
+                "rdseed",
+                "sep",
+                "serial",
+                "smap",
+                "smep",
+                "ss",
+                "sse",
+                "sse2",
+                "sse4_1",
+                "sse4_2",
+                "ssse3",
+                "tm",
+                "tm2",
+                "tsc",
+                "tscdeadline",
+                "vme",
+                "xsave",
+                "xtpr"
+            ],
+            "l2_cache_size": 65536,
+            "l2_cache_line_size": 256,
+            "l2_cache_associativity": 6,
+            "stepping": 4,
+            "model": 61,
+            "family": 6
+        }
+    },
+    "commit_info": {
+        "id": "65a6d107113024848a409c5e386d5152764861fc",
+        "time": "2025-09-05T15:43:35-04:00",
+        "author_time": "2025-09-05T15:43:35-04:00",
+        "dirty": true,
+        "project": "Houskeep",
+        "branch": "main"
+    },
+    "benchmarks": [
+        {
+            "group": null,
+            "name": "test_ext_001[.123--V  --dir-videos-add H:\\\\TeMp\\\\ H:\\\\Temp J: J:\\\\ j:\\\\ j: --nocolor-expected0]",
+            "fullname": "test_py_benchmark.py::test_ext_001[.123--V  --dir-videos-add H:\\\\TeMp\\\\ H:\\\\Temp J: J:\\\\ j:\\\\ j: --nocolor-expected0]",
+            "params": {
+                "str_2use": ".123",
+                "args": "-V  --dir-videos-add H:\\TeMp\\ H:\\Temp J: J:\\ j:\\ j: --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s .123 -V --dir-videos-add H:\\TeMp\\ H:\\Temp J: J:\\ j:\\ j: --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s .123 -V --dir-videos-add H:\\TeMp\\ H:\\Temp J: J:\\ j:\\ j: --nocolor]",
+                    "Search file  is [*.123]",
+                    "Regex string is [(\\.123)]",
+                    "Searching for Videos [123]",
+                    "\u2561 Videos: J:\\ [ 123 ] \u255e",
+                    "] >>-------> [*.123] [V:\"123\"]",
+                    "-->  H:\\TeMp",
+                    "-->  J:"
+                ]
+            },
+            "param": ".123--V  --dir-videos-add H:\\\\TeMp\\\\ H:\\\\Temp J: J:\\\\ j:\\\\ j: --nocolor-expected0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.6157897999801207,
+                "max": 1.650754300004337,
+                "mean": 1.629116589995101,
+                "stddev": 0.009624956839522834,
+                "rounds": 10,
+                "median": 1.6285726499918383,
+                "iqr": 0.010207299987087026,
+                "q1": 1.6234992000099737,
+                "q3": 1.6337064999970607,
+                "iqr_outliers": 1,
+                "stddev_outliers": 2,
+                "outliers": "2;1",
+                "ld15iqr": 1.6157897999801207,
+                "hd15iqr": 1.650754300004337,
+                "ops": 0.6138296093363135,
+                "total": 16.29116589995101,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[*.mp4--V --dir-videos-add H:\\\\TeMp\\\\ H:\\\\Temp J: J:\\\\ j:\\\\ j: --nocolor-expected1]",
+            "fullname": "test_py_benchmark.py::test_ext_001[*.mp4--V --dir-videos-add H:\\\\TeMp\\\\ H:\\\\Temp J: J:\\\\ j:\\\\ j: --nocolor-expected1]",
+            "params": {
+                "str_2use": "*.mp4",
+                "args": "-V --dir-videos-add H:\\TeMp\\ H:\\Temp J: J:\\ j:\\ j: --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s *.mp4 -V --dir-videos-add H:\\TeMp\\ H:\\Temp J: J:\\ j:\\ j: --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s *.mp4 -V --dir-videos-add H:\\TeMp\\ H:\\Temp J: J:\\ j:\\ j: --nocolor]",
+                    "Search file  is [*.mp4]",
+                    "Regex string is [(\\.mp4)]",
+                    "Searching for Videos [mp4]",
+                    "\u2561 Videos: J:\\ [ mp4 ] \u255e",
+                    "Match found --> J:\\Movies128\\Ghostbusters Set\\Ghostbusters.1984.720p.BluRay.x264.AAC-[YTS.MX].mp4",
+                    "] >>-------> [*.mp4] [V:\"mp4\"]",
+                    "-->  H:\\TeMp",
+                    "-->  J:"
+                ]
+            },
+            "param": "*.mp4--V --dir-videos-add H:\\\\TeMp\\\\ H:\\\\Temp J: J:\\\\ j:\\\\ j: --nocolor-expected1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.8702621999836992,
+                "max": 1.9054213000054006,
+                "mean": 1.8883219875024224,
+                "stddev": 0.014874768036646347,
+                "rounds": 8,
+                "median": 1.8878716000035638,
+                "iqr": 0.028476099978433922,
+                "q1": 1.874549250016571,
+                "q3": 1.903025349995005,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 1.8702621999836992,
+                "hd15iqr": 1.9054213000054006,
+                "ops": 0.5295707017226675,
+                "total": 15.10657590001938,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[*.tar.gz--S --dir-videos-add H:\\\\TeMp --nocolor-expected2]",
+            "fullname": "test_py_benchmark.py::test_ext_001[*.tar.gz--S --dir-videos-add H:\\\\TeMp --nocolor-expected2]",
+            "params": {
+                "str_2use": "*.tar.gz",
+                "args": "-S --dir-videos-add H:\\TeMp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s *.tar.gz -S --dir-videos-add H:\\TeMp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s *.tar.gz -S --dir-videos-add H:\\TeMp --nocolor]",
+                    "Search file  is [*.tar.gz]",
+                    "Regex string is [(\\.tar\\.gz)]",
+                    "Searching for Software [tar.gz]",
+                    "] >>-------> [*.tar.gz] [S:\"tar.gz\"]"
+                ]
+            },
+            "param": "*.tar.gz--S --dir-videos-add H:\\\\TeMp --nocolor-expected2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.9628873000037856,
+                "max": 1.0664993999816943,
+                "mean": 1.0075035800012604,
+                "stddev": 0.028675759178233742,
+                "rounds": 15,
+                "median": 1.0036363000108395,
+                "iqr": 0.032283300017297734,
+                "q1": 0.994420649993117,
+                "q3": 1.0267039500104147,
+                "iqr_outliers": 0,
+                "stddev_outliers": 5,
+                "outliers": "5;0",
+                "ld15iqr": 0.9628873000037856,
+                "hd15iqr": 1.0664993999816943,
+                "ops": 0.9925523043786593,
+                "total": 15.112553700018907,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[.txt--S -G -M -B -V --dir-videos-add H:\\\\TeMp --nocolor-expected3]",
+            "fullname": "test_py_benchmark.py::test_ext_001[.txt--S -G -M -B -V --dir-videos-add H:\\\\TeMp --nocolor-expected3]",
+            "params": {
+                "str_2use": ".txt",
+                "args": "-S -G -M -B -V --dir-videos-add H:\\TeMp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s .txt -S -G -M -B -V --dir-videos-add H:\\TeMp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s .txt -S -G -M -B -V --dir-videos-add H:\\TeMp --nocolor]",
+                    "-->  H:\\TeMp",
+                    "\u2561 Videos: H:\\TeMp\\ [ txt ] \u255e",
+                    "Searching for Videos [txt]",
+                    "Searching for Music [txt]",
+                    "Searching for Books [txt]",
+                    "] >>-------> [*.txt] [V:\"txt\" M:\"txt\" B:\"txt\" G:\"txt\" S:\"txt\"]"
+                ]
+            },
+            "param": ".txt--S -G -M -B -V --dir-videos-add H:\\\\TeMp --nocolor-expected3",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.151478000014322,
+                "max": 4.9265228000003844,
+                "mean": 4.524428850010736,
+                "stddev": 0.39886661083486574,
+                "rounds": 4,
+                "median": 4.509857300014119,
+                "iqr": 0.6842438000021502,
+                "q1": 4.182306950009661,
+                "q3": 4.866550750011811,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 4.151478000014322,
+                "hd15iqr": 4.9265228000003844,
+                "ops": 0.2210223728012934,
+                "total": 18.097715400042944,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[*.djvu---books --ext-books-add jpg --dir-books-add H:\\\\TEMP --nocolor-expected4]",
+            "fullname": "test_py_benchmark.py::test_ext_001[*.djvu---books --ext-books-add jpg --dir-books-add H:\\\\TEMP --nocolor-expected4]",
+            "params": {
+                "str_2use": "*.djvu",
+                "args": "--books --ext-books-add jpg --dir-books-add H:\\TEMP --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s *.djvu --books --ext-books-add jpg --dir-books-add H:\\TEMP --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s *.djvu --books --ext-books-add jpg --dir-books-add H:\\TEMP --nocolor]",
+                    "-->  H:\\TEMP",
+                    "\u2561 Books: H:\\TEMP\\ [ djvu ] \u255e",
+                    "\u2552\u2550>> *** Total file(s) located:  [  313 /   313] >>-------> [*.djvu] [B:\"djvu\"]"
+                ]
+            },
+            "param": "*.djvu---books --ext-books-add jpg --dir-books-add H:\\\\TEMP --nocolor-expected4",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.436849399993662,
+                "max": 2.465462899999693,
+                "mean": 2.4574261833331548,
+                "stddev": 0.01060330175094656,
+                "rounds": 6,
+                "median": 2.4597712000104366,
+                "iqr": 0.008006799995200709,
+                "q1": 2.45734779999475,
+                "q3": 2.4653545999899507,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 2.45734779999475,
+                "hd15iqr": 2.465462899999693,
+                "ops": 0.4069298222596619,
+                "total": 14.744557099998929,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[*.exe---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected5]",
+            "fullname": "test_py_benchmark.py::test_ext_001[*.exe---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected5]",
+            "params": {
+                "str_2use": "*.exe",
+                "args": "--videos --games --software --dir-all-add H:\\temp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s *.exe --videos --games --software --dir-all-add H:\\temp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s *.exe --videos --games --software --dir-all-add H:\\temp --nocolor]",
+                    "-->  H:\\temp",
+                    "Games: H:\\temp\\ [ exe ]",
+                    "\u2561 Videos: H:\\temp\\ [ exe ] \u255e",
+                    "] >>-------> [*.exe] [V:\"exe\" G:\"exe\" S:\"exe\"]"
+                ]
+            },
+            "param": "*.exe---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected5",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.498616900003981,
+                "max": 2.5758929000003263,
+                "mean": 2.523641050007427,
+                "stddev": 0.02966115963137854,
+                "rounds": 6,
+                "median": 2.5146619000006467,
+                "iqr": 0.04010410001501441,
+                "q1": 2.498954300011974,
+                "q3": 2.5390584000269882,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 2.498616900003981,
+                "hd15iqr": 2.5758929000003263,
+                "ops": 0.39625286646730407,
+                "total": 15.141846300044563,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[.bad---ext-videos-add 123 --videos --music --books --dir-videos-add H:\\\\temp --nocolor-expected6]",
+            "fullname": "test_py_benchmark.py::test_ext_001[.bad---ext-videos-add 123 --videos --music --books --dir-videos-add H:\\\\temp --nocolor-expected6]",
+            "params": {
+                "str_2use": ".bad",
+                "args": "--ext-videos-add 123 --videos --music --books --dir-videos-add H:\\temp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s .bad --ext-videos-add 123 --videos --music --books --dir-videos-add H:\\temp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s .bad --ext-videos-add 123 --videos --music --books --dir-videos-add H:\\temp --nocolor]",
+                    "-->  H:\\temp",
+                    "\u2561 Videos: H:\\temp\\ [ bad ] \u255e",
+                    "] >>-------> [*.bad] [V:\"bad\" M:bad B:bad]"
+                ]
+            },
+            "param": ".bad---ext-videos-add 123 --videos --music --books --dir-videos-add H:\\\\temp --nocolor-expected6",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.2046757000207435,
+                "max": 4.248529400007101,
+                "mean": 4.228568375001487,
+                "stddev": 0.018157166955962638,
+                "rounds": 4,
+                "median": 4.230534199989052,
+                "iqr": 0.02437804998771753,
+                "q1": 4.216379350007628,
+                "q3": 4.240757399995346,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 4.2046757000207435,
+                "hd15iqr": 4.248529400007101,
+                "ops": 0.23648665726012966,
+                "total": 16.914273500005947,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[*.123---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected7]",
+            "fullname": "test_py_benchmark.py::test_ext_001[*.123---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected7]",
+            "params": {
+                "str_2use": "*.123",
+                "args": "--videos --games --software --dir-all-add H:\\temp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s *.123 --videos --games --software --dir-all-add H:\\temp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s *.123 --videos --games --software --dir-all-add H:\\temp --nocolor]",
+                    "Searching for Videos [123]",
+                    "Searching for Games [123]",
+                    "-->  H:\\temp",
+                    "\u2561 Games: H:\\temp\\ [ 123 ] \u255e",
+                    "\u2552\u2550>> *** Total file(s) located:  [    4 /     4] >>-------> [*.123] [V:\"123\" G:123 S:123]"
+                ]
+            },
+            "param": "*.123---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected7",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.4350330000161193,
+                "max": 2.4952224000007845,
+                "mean": 2.454115028580418,
+                "stddev": 0.0200437712945658,
+                "rounds": 7,
+                "median": 2.450945300020976,
+                "iqr": 0.017148775004898198,
+                "q1": 2.44178390000161,
+                "q3": 2.4589326750065084,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 2.4350330000161193,
+                "hd15iqr": 2.4952224000007845,
+                "ops": 0.4074788623817889,
+                "total": 17.178805200062925,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[alien---videos --dir-all H:\\\\temp --ext-all JPG --ext-videos jPg mkv * --ext-all-add JpG mp4 --nocolor-expected0]",
+            "fullname": "test_py_benchmark.py::test_match_001[alien---videos --dir-all H:\\\\temp --ext-all JPG --ext-videos jPg mkv * --ext-all-add JpG mp4 --nocolor-expected0]",
+            "params": {
+                "str_2use": "alien",
+                "args": "--videos --dir-all H:\\temp --ext-all JPG --ext-videos jPg mkv * --ext-all-add JpG mp4 --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s alien --videos --dir-all H:\\temp --ext-all JPG --ext-videos jPg mkv * --ext-all-add JpG mp4 --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s alien --videos --dir-all H:\\temp --ext-all JPG --ext-videos jPg mkv * --ext-all-add JpG mp4 --nocolor]",
+                    "Regex string is [(alien)]",
+                    "Searching for Videos [*]",
+                    "Search file  is [*alien*]"
+                ]
+            },
+            "param": "alien---videos --dir-all H:\\\\temp --ext-all JPG --ext-videos jPg mkv * --ext-all-add JpG mp4 --nocolor-expected0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 0.8003066999954171,
+                "max": 0.8656443000072613,
+                "mean": 0.829464505880263,
+                "stddev": 0.019863200407522968,
+                "rounds": 17,
+                "median": 0.8249026999983471,
+                "iqr": 0.03180594998411834,
+                "q1": 0.8143640499984031,
+                "q3": 0.8461699999825214,
+                "iqr_outliers": 0,
+                "stddev_outliers": 5,
+                "outliers": "5;0",
+                "ld15iqr": 0.8003066999954171,
+                "hd15iqr": 0.8656443000072613,
+                "ops": 1.2055970965734784,
+                "total": 14.100896599964472,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[Jaw?_1975_h.265_DTS_?GrimP}.mp4---videos --nocolor-expected1]",
+            "fullname": "test_py_benchmark.py::test_match_001[Jaw?_1975_h.265_DTS_?GrimP}.mp4---videos --nocolor-expected1]",
+            "params": {
+                "str_2use": "Jaw?_1975_h.265_DTS_?GrimP}.mp4",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s Jaw?_1975_h.265_DTS_?GrimP}.mp4 --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s Jaw?_1975_h.265_DTS_?GrimP}.mp4 --videos --nocolor]",
+                    "Search file  is [*Jaw?_1975_h.265_DTS_?GrimP}.mp4*]",
+                    "Regex string is [(Jaw[^\\.]_1975_h\\.265_DTS_[^\\.]GrimP\\}\\.mp4)]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v]",
+                    "\u2552\u2550>> *** Total file(s) located:  [    1 /     1] >>-------> [*Jaw?_1975_h.265_DTS_?GrimP}.mp4*] [V:mkv avi \"mp4\" mpg mov m4v]"
+                ]
+            },
+            "param": "Jaw?_1975_h.265_DTS_?GrimP}.mp4---videos --nocolor-expected1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 6.089284099987708,
+                "max": 7.082256100024097,
+                "mean": 6.585770100005902,
+                "stddev": 0.7021372347540992,
+                "rounds": 2,
+                "median": 6.585770100005902,
+                "iqr": 0.9929720000363886,
+                "q1": 6.089284099987708,
+                "q3": 7.082256100024097,
+                "iqr_outliers": 0,
+                "stddev_outliers": 0,
+                "outliers": "0;0",
+                "ld15iqr": 6.089284099987708,
+                "hd15iqr": 7.082256100024097,
+                "ops": 0.15184253091359867,
+                "total": 13.171540200011805,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[Stephen*Ki?g---books --nocolor-expected2]",
+            "fullname": "test_py_benchmark.py::test_match_001[Stephen*Ki?g---books --nocolor-expected2]",
+            "params": {
+                "str_2use": "Stephen*Ki?g",
+                "args": "--books --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s Stephen*Ki?g --books --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s Stephen*Ki?g --books --nocolor]",
+                    "Search file  is [*Stephen*Ki?g*]",
+                    "Regex string is [Stephen[^\\\\]*?Ki[^\\.]g]",
+                    "Searching for Books [epub mobi pdf djvu txt]",
+                    "\u2552\u2550>> *** Total file(s) located:  [  286 /   286] >>-------> [*Stephen*Ki?g*] [B:\"epub\" \"mobi\" pdf djvu txt]"
+                ]
+            },
+            "param": "Stephen*Ki?g---books --nocolor-expected2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.8672687000071164,
+                "max": 3.787463899992872,
+                "mean": 3.0327328166701286,
+                "stddev": 0.37004863191326487,
+                "rounds": 6,
+                "median": 2.8787666999996873,
+                "iqr": 0.03615550001268275,
+                "q1": 2.8739877000043634,
+                "q3": 2.910143200017046,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 2.8672687000071164,
+                "hd15iqr": 3.787463899992872,
+                "ops": 0.3297356082617186,
+                "total": 18.196396900020773,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[Finale {C P}-17.m4v---videos --nocolor-expected3]",
+            "fullname": "test_py_benchmark.py::test_match_001[Finale {C P}-17.m4v---videos --nocolor-expected3]",
+            "params": {
+                "str_2use": "Finale {C P}-17.m4v",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"Finale {C P}-17.m4v\" --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s \"Finale {C P}-17.m4v\" --videos --nocolor]",
+                    "Search file  is [*Finale {C P}-17.m4v*]",
+                    "Regex string is [(Finale \\{C P\\}\\-17\\.m4v)]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v]",
+                    "\u2552\u2550>> *** Total file(s) located:  [    1 /     1] >>-------> [*Finale {C P}-17.m4v*] [V:mkv avi mp4 mpg mov \"m4v\"]"
+                ]
+            },
+            "param": "Finale {C P}-17.m4v---videos --nocolor-expected3",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.6606377999996766,
+                "max": 2.720948000001954,
+                "mean": 2.68619493333487,
+                "stddev": 0.019613666773051687,
+                "rounds": 6,
+                "median": 2.684393749994342,
+                "iqr": 0.00887629998032935,
+                "q1": 2.6789600000192877,
+                "q3": 2.687836299999617,
+                "iqr_outliers": 2,
+                "stddev_outliers": 2,
+                "outliers": "2;2",
+                "ld15iqr": 2.6789600000192877,
+                "hd15iqr": 2.720948000001954,
+                "ops": 0.3722738017223922,
+                "total": 16.11716960000922,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[alien---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected4]",
+            "fullname": "test_py_benchmark.py::test_match_001[alien---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected4]",
+            "params": {
+                "str_2use": "alien",
+                "args": "--videos --games --software --dir-all-add H:\\temp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s alien --videos --games --software --dir-all-add H:\\temp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s alien --videos --games --software --dir-all-add H:\\temp --nocolor]",
+                    "Regex string is [(alien)]",
+                    "Searching for Software [exe gz iso msi zip]",
+                    "Searching for Games [exe gz iso msi zip]",
+                    "Search file  is [*alien*]"
+                ]
+            },
+            "param": "alien---videos --games --software --dir-all-add H:\\\\temp --nocolor-expected4",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.4463780999940354,
+                "max": 3.549089999985881,
+                "mean": 3.4777073599922006,
+                "stddev": 0.041659926612195496,
+                "rounds": 5,
+                "median": 3.463144300010754,
+                "iqr": 0.04489417500735726,
+                "q1": 3.4507080749826855,
+                "q3": 3.4956022499900428,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 3.4463780999940354,
+                "hd15iqr": 3.549089999985881,
+                "ops": 0.28754575830734724,
+                "total": 17.388536799961003,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[ali*1---videos --games --software --dir-all-add H:\\\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games H:\\\\temp --ext-videos-add .iso --nocolor-expected5]",
+            "fullname": "test_py_benchmark.py::test_match_001[ali*1---videos --games --software --dir-all-add H:\\\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games H:\\\\temp --ext-videos-add .iso --nocolor-expected5]",
+            "params": {
+                "str_2use": "ali*1",
+                "args": "--videos --games --software --dir-all-add H:\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games H:\\temp --ext-videos-add .iso --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s ali*1 --videos --games --software --dir-all-add H:\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games H:\\temp --ext-videos-add .iso --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s ali*1 --videos --games --software --dir-all-add H:\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games H:\\temp --ext-videos-add .iso --nocolor]",
+                    "Regex string is [ali[^\\\\]*?1]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v 456 123 iso]",
+                    "\u2561 Videos: H:\\temp\\ [ mkv avi mp4 mpg mov m4v 456 123 iso ] \u255e",
+                    ":18 AM     4,593,483,776 ALIEN_~1.ISO ALIEN_ANTHOLOGY_BONUS_DISC.iso",
+                    ":18 AM     4,655,644,672 ALIEN3~1.ISO ALIEN3_SE_ANTHOLOGY_EXTRAS.iso",
+                    "[8.3 ]",
+                    "] >>-------> [*ali*1*] [V:\"mkv\" avi \"mp4\" mpg mov \"m4v\" 456 \"123\" iso G:exe gz iso msi zip 456 S:098]"
+                ]
+            },
+            "param": "ali*1---videos --games --software --dir-all-add H:\\\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games H:\\\\temp --ext-videos-add .iso --nocolor-expected5",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.663784000003943,
+                "max": 4.018572600005427,
+                "mean": 3.768128349998733,
+                "stddev": 0.16819621477672253,
+                "rounds": 4,
+                "median": 3.6950783999927808,
+                "iqr": 0.19452970000565983,
+                "q1": 3.670863499995903,
+                "q3": 3.865393200001563,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 3.663784000003943,
+                "hd15iqr": 4.018572600005427,
+                "ops": 0.26538374150666505,
+                "total": 15.072513399994932,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[alien---videos --ext-videos-add mp3 --dir-videos-add I:\\\\Seagate\\\\Media\\\\Music --nocolor-expected6]",
+            "fullname": "test_py_benchmark.py::test_match_001[alien---videos --ext-videos-add mp3 --dir-videos-add I:\\\\Seagate\\\\Media\\\\Music --nocolor-expected6]",
+            "params": {
+                "str_2use": "alien",
+                "args": "--videos --ext-videos-add mp3 --dir-videos-add I:\\Seagate\\Media\\Music --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s alien --videos --ext-videos-add mp3 --dir-videos-add I:\\Seagate\\Media\\Music --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s alien --videos --ext-videos-add mp3 --dir-videos-add I:\\Seagate\\Media\\Music --nocolor]",
+                    "Regex string is [(alien)]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v mp3]",
+                    "\u2561 Videos: I:\\Seagate\\Media\\Music\\ [ mkv avi mp4 mpg mov m4v mp3 ] \u255e",
+                    "] >>-------> [*alien*] [V:\"mkv\" avi \"mp4\" mpg mov \"m4v\" \"mp3\"]"
+                ]
+            },
+            "param": "alien---videos --ext-videos-add mp3 --dir-videos-add I:\\\\Seagate\\\\Media\\\\Music --nocolor-expected6",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.173249599989504,
+                "max": 4.228237500006799,
+                "mean": 4.206112400002894,
+                "stddev": 0.023309368570868776,
+                "rounds": 4,
+                "median": 4.211481250007637,
+                "iqr": 0.02868710001348518,
+                "q1": 4.191768849996151,
+                "q3": 4.220455950009637,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 4.173249599989504,
+                "hd15iqr": 4.228237500006799,
+                "ops": 0.23774923371028125,
+                "total": 16.824449600011576,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[al?e*n---videos-expected7]",
+            "fullname": "test_py_benchmark.py::test_match_001[al?e*n---videos-expected7]",
+            "params": {
+                "str_2use": "al?e*n",
+                "args": "--videos",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s al?e*n --videos",
+                    "Run as: [py.exe houskeep_dev.py -s al?e*n --videos]",
+                    "Search file  is [*al?e*n*]",
+                    "Regex string is [al[^\\.]e[^\\\\]*?n]",
+                    "] >>-------> [*al?e*n*] [V:mkv avi mp4 mpg mov m4v]"
+                ]
+            },
+            "param": "al?e*n---videos-expected7",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.727633699978469,
+                "max": 2.7967764000059105,
+                "mean": 2.7533563500037417,
+                "stddev": 0.025212053448038774,
+                "rounds": 6,
+                "median": 2.749639850022504,
+                "iqr": 0.03216410000459291,
+                "q1": 2.7321420999942347,
+                "q3": 2.7643061999988277,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 2.727633699978469,
+                "hd15iqr": 2.7967764000059105,
+                "ops": 0.3631930897715586,
+                "total": 16.52013810002245,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[i:\\\\Seagate\\\\Software\\\\LibreOffice_(64bit)_v7.6.7.msi---software --nocolor-expected0]",
+            "fullname": "test_py_benchmark.py::test_file_001[i:\\\\Seagate\\\\Software\\\\LibreOffice_(64bit)_v7.6.7.msi---software --nocolor-expected0]",
+            "params": {
+                "str_2use": "i:\\Seagate\\Software\\LibreOffice_(64bit)_v7.6.7.msi",
+                "args": "--software --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s i:\\Seagate\\Software\\LibreOffice_(64bit)_v7.6.7.msi --software --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s i:\\Seagate\\Software\\LibreOffice_(64bit)_v7.6.7.msi --software --nocolor]",
+                    "Search file  is [LibreOffice_(64bit)_v7.6.7*]",
+                    "Regex string is [^(LibreOffice_\\(64bit\\)_v7\\.6\\.7)]",
+                    "Searching for Software [exe gz iso msi zip]",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [LibreOffice_(64bit)_v7.6.7*] [S:exe gz iso \"msi\" zip]"
+                ]
+            },
+            "param": "i:\\\\Seagate\\\\Software\\\\LibreOffice_(64bit)_v7.6.7.msi---software --nocolor-expected0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.2152857000182848,
+                "max": 1.2740826999943238,
+                "mean": 1.244037916667973,
+                "stddev": 0.015625450933920947,
+                "rounds": 12,
+                "median": 1.242989350008429,
+                "iqr": 0.01605979997839313,
+                "q1": 1.2366039000044111,
+                "q3": 1.2526636999828042,
+                "iqr_outliers": 0,
+                "stddev_outliers": 4,
+                "outliers": "4;0",
+                "ld15iqr": 1.2152857000182848,
+                "hd15iqr": 1.2740826999943238,
+                "ops": 0.8038340203314677,
+                "total": 14.928455000015674,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\Pink Floyd\\\\Pink Floyd - Discography\\\\Pink Floyd - The Piper at the Gates of Dawn 1967 [EAC - FLAC] (oan)\\\\05 - Pow R. Toc H..flac---music --nocolor-expected1]",
+            "fullname": "test_py_benchmark.py::test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\Pink Floyd\\\\Pink Floyd - Discography\\\\Pink Floyd - The Piper at the Gates of Dawn 1967 [EAC - FLAC] (oan)\\\\05 - Pow R. Toc H..flac---music --nocolor-expected1]",
+            "params": {
+                "str_2use": "i:\\Seagate\\Media\\Music\\Mem02\\Pink Floyd\\Pink Floyd - Discography\\Pink Floyd - The Piper at the Gates of Dawn 1967 [EAC - FLAC] (oan)\\05 - Pow R. Toc H..flac",
+                "args": "--music --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem02\\Pink Floyd\\Pink Floyd - Discography\\Pink Floyd - The Piper at the Gates of Dawn 1967 [EAC - FLAC] (oan)\\05 - Pow R. Toc H..flac\" --music --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem02\\Pink Floyd\\Pink Floyd - Discography\\Pink Floyd - The Piper at the Gates of Dawn 1967 [EAC - FLAC] (oan)\\05 - Pow R. Toc H..flac\" --music --nocolor",
+                    "Search file  is [05 - Pow R. Toc H.*]",
+                    "Regex string is [^(05 \\- Pow R\\. Toc H\\.)]",
+                    "Searching for Music [mp3 flac wav m4a m4p ra m3u]",
+                    "[   1] Match found --> I:\\Seagate\\Media\\Music\\Mem02\\Pink Floyd\\Pink Floyd - Discography\\Pink Floyd - The Piper At The Gates Of Dawn 40th [Disc 1] 2007\\05 - Pow R. Toc H. [mono].flac",
+                    "[   2] Match found --> I:\\Seagate\\Media\\Music\\Mem02\\Pink Floyd\\Pink Floyd - Discography\\Pink Floyd - The Piper At The Gates Of Dawn 40th [Disc 2] 2007\\05 - Pow R. Toc H..flac",
+                    "\u2552\u2550>> *** Total file(s) located:  [    3 /     3] >>-------> [05 - Pow R. Toc H.*] [M:mp3 \"flac\" wav m4a m4p ra m3u]"
+                ]
+            },
+            "param": "i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\Pink Floyd\\\\Pink Floyd - Discography\\\\Pink Floyd - The Piper at the Gates of Dawn 1967 [EAC - FLAC] (oan)\\\\05 - Pow R. Toc H..flac---music --nocolor-expected1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.9246466000040527,
+                "max": 1.9596745999879204,
+                "mean": 1.9439100375020644,
+                "stddev": 0.0127973383752899,
+                "rounds": 8,
+                "median": 1.9423777000047266,
+                "iqr": 0.021721150013036095,
+                "q1": 1.934690349997254,
+                "q3": 1.9564115000102902,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 1.9246466000040527,
+                "hd15iqr": 1.9596745999879204,
+                "ops": 0.5144270983265284,
+                "total": 15.551280300016515,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[i:\\\\Seagate\\\\Media\\\\Videos\\\\Classics\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Deleted Scene.mkv---videos --nocolor-expected2]",
+            "fullname": "test_py_benchmark.py::test_file_001[i:\\\\Seagate\\\\Media\\\\Videos\\\\Classics\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Deleted Scene.mkv---videos --nocolor-expected2]",
+            "params": {
+                "str_2use": "i:\\Seagate\\Media\\Videos\\Classics\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Deleted Scene.mkv",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Videos\\Classics\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Deleted Scene.mkv\" --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Videos\\Classics\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Deleted Scene.mkv\" --videos --nocolor]",
+                    "Search file  is [Deleted Scene*]",
+                    "Regex string is [^(Deleted Scene)]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v]",
+                    "\u2552\u2550>> *** Total file(s) located:  [    2 /     2] >>-------> [Deleted Scene*] [V:\"mkv\" avi mp4 mpg mov m4v]"
+                ]
+            },
+            "param": "i:\\\\Seagate\\\\Media\\\\Videos\\\\Classics\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Deleted Scene.mkv---videos --nocolor-expected2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.4518952000071295,
+                "max": 2.4919168000051286,
+                "mean": 2.470238966663601,
+                "stddev": 0.017868053091993182,
+                "rounds": 6,
+                "median": 2.467101949994685,
+                "iqr": 0.03599590001977049,
+                "q1": 2.4537109999801032,
+                "q3": 2.4897068999998737,
+                "iqr_outliers": 0,
+                "stddev_outliers": 3,
+                "outliers": "3;0",
+                "ld15iqr": 2.4518952000071295,
+                "hd15iqr": 2.4919168000051286,
+                "ops": 0.4048191343004512,
+                "total": 14.821433799981605,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\Classics\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Trailer.mkv---videos --nocolor --ext-all-add Mp3 --ext-all-add Mkv --ext-videos-add MPG --ext-videos-add *.MPG --ext-all-add 864-expected3]",
+            "fullname": "test_py_benchmark.py::test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\Classics\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Trailer.mkv---videos --nocolor --ext-all-add Mp3 --ext-all-add Mkv --ext-videos-add MPG --ext-videos-add *.MPG --ext-all-add 864-expected3]",
+            "params": {
+                "str_2use": "I:\\Seagate\\Media\\Videos\\Classics\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Trailer.mkv",
+                "args": "--videos --nocolor --ext-all-add Mp3 --ext-all-add Mkv --ext-videos-add MPG --ext-videos-add *.MPG --ext-all-add 864",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"I:\\Seagate\\Media\\Videos\\Classics\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Trailer.mkv\" --videos --nocolor --ext-all-add Mp3 --ext-all-add Mkv --ext-videos-add MPG --ext-videos-add *.MPG --ext-all-add 864",
+                    "Run as: [py.exe houskeep_dev.py -s \"I:\\Seagate\\Media\\Videos\\Classics\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Trailer.mkv\" --videos --nocolor --ext-all-add Mp3 --ext-all-add Mkv --ext-videos-add MPG --ext-videos-add *.MPG --ext-all-add 864]",
+                    "Search file  is [Trailer*]",
+                    "Regex string is [^(Trailer)]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v Mp3 864]",
+                    "\u2552\u2550>> *** Total file(s) located:  [    2 /     2] >>-------> [Trailer*] [V:\"mkv\" avi mp4 mpg mov \"m4v\" Mp3 864]"
+                ]
+            },
+            "param": "I:\\\\Seagate\\\\Media\\\\Videos\\\\Classics\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Trailer.mkv---videos --nocolor --ext-all-add Mp3 --ext-all-add Mkv --ext-videos-add MPG --ext-videos-add *.MPG --ext-all-add 864-expected3",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.6735951000009663,
+                "max": 2.729693100001896,
+                "mean": 2.691335033334326,
+                "stddev": 0.02047667326327852,
+                "rounds": 6,
+                "median": 2.689727799996035,
+                "iqr": 0.01734059999580495,
+                "q1": 2.6739629000076093,
+                "q3": 2.6913035000034142,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 2.6735951000009663,
+                "hd15iqr": 2.729693100001896,
+                "ops": 0.37156280716232065,
+                "total": 16.148010200005956,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[J:\\\\Movies128\\\\Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX].mp4---videos --nocolor --ext-videos-add MPG --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add .mP4-expected4]",
+            "fullname": "test_py_benchmark.py::test_file_001[J:\\\\Movies128\\\\Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX].mp4---videos --nocolor --ext-videos-add MPG --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add .mP4-expected4]",
+            "params": {
+                "str_2use": "J:\\Movies128\\Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX].mp4",
+                "args": "--videos --nocolor --ext-videos-add MPG --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add .mP4",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s J:\\Movies128\\Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX].mp4 --videos --nocolor --ext-videos-add MPG",
+                    "Run as: [py.exe houskeep_dev.py -s J:\\Movies128\\Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX].mp4 --videos --nocolor --ext-videos-add MPG --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add .mP4]",
+                    "Search file  is [Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX]*]",
+                    "Regex string is [^(Bob\\.Marley\\.One\\.Love\\.2024\\.720p\\.WEBRip\\.x264\\.AAC\\-\\[YTS\\.MX\\])]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v]",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX]*] [V:mkv avi \"mp4\" mpg mov m4v]"
+                ]
+            },
+            "param": "J:\\\\Movies128\\\\Bob.Marley.One.Love.2024.720p.WEBRip.x264.AAC-[YTS.MX].mp4---videos --nocolor --ext-videos-add MPG --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add *.mP4 --ext-videos-add .mP4-expected4",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.445726600009948,
+                "max": 2.483304599998519,
+                "mean": 2.458183299997472,
+                "stddev": 0.014135738443808277,
+                "rounds": 6,
+                "median": 2.4551621499995235,
+                "iqr": 0.018267900013597682,
+                "q1": 2.445738199981861,
+                "q3": 2.4640060999954585,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 2.445726600009948,
+                "hd15iqr": 2.483304599998519,
+                "ops": 0.40680448850215045,
+                "total": 14.749099799984833,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\TV\\\\Hannah-Barbera\\\\Hanna-Barbera Classics - Hillbilly Bears\\\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v---videos --nocolor --ext-videos-add AVI --ext-videos-add *.AVI-expected5]",
+            "fullname": "test_py_benchmark.py::test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\TV\\\\Hannah-Barbera\\\\Hanna-Barbera Classics - Hillbilly Bears\\\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v---videos --nocolor --ext-videos-add AVI --ext-videos-add *.AVI-expected5]",
+            "params": {
+                "str_2use": "I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v",
+                "args": "--videos --nocolor --ext-videos-add AVI --ext-videos-add *.AVI",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v\" --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s \"I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v\" --videos --nocolor --ext-videos-add AVI --ext-videos-add *.AVI]",
+                    "Search file  is [HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip*]",
+                    "Regex string is [^(HillbillyBears\\-SlapHappyGrandpappy\\[SlumLord\\}VHSRip)]",
+                    "[Orig] >>------------> I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip*] [V:mkv avi mp4 mpg mov \"m4v\"]"
+                ]
+            },
+            "param": "I:\\\\Seagate\\\\Media\\\\Videos\\\\TV\\\\Hannah-Barbera\\\\Hanna-Barbera Classics - Hillbilly Bears\\\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v---videos --nocolor --ext-videos-add AVI --ext-videos-add *.AVI-expected5",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.4379553999751806,
+                "max": 2.7499554000096396,
+                "mean": 2.5171336428569964,
+                "stddev": 0.1158146184838399,
+                "rounds": 7,
+                "median": 2.4589578000013717,
+                "iqr": 0.11299812496145023,
+                "q1": 2.451601450018643,
+                "q3": 2.564599574980093,
+                "iqr_outliers": 1,
+                "stddev_outliers": 1,
+                "outliers": "1;1",
+                "ld15iqr": 2.4379553999751806,
+                "hd15iqr": 2.7499554000096396,
+                "ops": 0.39727727720685513,
+                "total": 17.619935499998974,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem01\\\\Aerosmith\\\\The Essential Aerosmith\\\\2-07 Falling In Love (Is Hard On The.mp3---music --nocolor-expected6]",
+            "fullname": "test_py_benchmark.py::test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem01\\\\Aerosmith\\\\The Essential Aerosmith\\\\2-07 Falling In Love (Is Hard On The.mp3---music --nocolor-expected6]",
+            "params": {
+                "str_2use": "i:\\Seagate\\Media\\Music\\Mem01\\Aerosmith\\The Essential Aerosmith\\2-07 Falling In Love (Is Hard On The.mp3",
+                "args": "--music --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem01\\Aerosmith\\The Essential Aerosmith\\2-07 Falling In Love (Is Hard On The.mp3\" --music --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem01\\Aerosmith\\The Essential Aerosmith\\2-07 Falling In Love (Is Hard On The.mp3\" --music --nocolor]",
+                    "Search file  is [2-07 Falling In Love (Is Hard On The*]",
+                    "Regex string is [^(2\\-07 Falling In Love \\(Is Hard On The)]",
+                    "[Orig] >>------------> I:\\Seagate\\Media\\Music\\Mem01\\Aerosmith\\The Essential Aerosmith\\2-07 Falling In Love (Is Hard On The.mp3",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [2-07 Falling In Love (Is Hard On The*] [M:\"mp3\" flac wav m4a m4p ra m3u]"
+                ]
+            },
+            "param": "i:\\\\Seagate\\\\Media\\\\Music\\\\Mem01\\\\Aerosmith\\\\The Essential Aerosmith\\\\2-07 Falling In Love (Is Hard On The.mp3---music --nocolor-expected6",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.9290013000136241,
+                "max": 1.9714030000031926,
+                "mean": 1.9450150875018153,
+                "stddev": 0.013131220093334051,
+                "rounds": 8,
+                "median": 1.9438179999997374,
+                "iqr": 0.014990500014391728,
+                "q1": 1.9355248499923619,
+                "q3": 1.9505153500067536,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 1.9290013000136241,
+                "hd15iqr": 1.9714030000031926,
+                "ops": 0.5141348293006837,
+                "total": 15.560120700014522,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\The Beatles\\\\Help!\\\\10 You Like Me Too Much.mp3---music --nocolor-expected7]",
+            "fullname": "test_py_benchmark.py::test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\The Beatles\\\\Help!\\\\10 You Like Me Too Much.mp3---music --nocolor-expected7]",
+            "params": {
+                "str_2use": "i:\\Seagate\\Media\\Music\\Mem02\\The Beatles\\Help!\\10 You Like Me Too Much.mp3",
+                "args": "--music --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem02\\The Beatles\\Help!\\10 You Like Me Too Much.mp3\" --music --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem02\\The Beatles\\Help!\\10 You Like Me Too Much.mp3\" --music --nocolor]",
+                    "Search file  is [10 You Like Me Too Much*]",
+                    "Regex string is [^(10 You Like Me Too Much)]",
+                    "[Orig] >>------------> I:\\Seagate\\Media\\Music\\Mem02\\The Beatles\\Help!\\10 You Like Me Too Much.mp3",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [10 You Like Me Too Much*] [M:\"mp3\" flac wav m4a m4p ra m3u]"
+                ]
+            },
+            "param": "i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\The Beatles\\\\Help!\\\\10 You Like Me Too Much.mp3---music --nocolor-expected7",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.9225684000120964,
+                "max": 1.950738099985756,
+                "mean": 1.9391746375040384,
+                "stddev": 0.009351683852384203,
+                "rounds": 8,
+                "median": 1.9407092500041472,
+                "iqr": 0.013078750023851171,
+                "q1": 1.9331286499946145,
+                "q3": 1.9462074000184657,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 1.9225684000120964,
+                "hd15iqr": 1.950738099985756,
+                "ops": 0.5156833121988053,
+                "total": 15.513397100032307,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\ZZ Top\\\\Greatest Hits\\\\14 Sleeping Bag.m4a---music --nocolor --ext-music-add rA --ext-music-add *.RA-expected8]",
+            "fullname": "test_py_benchmark.py::test_file_001[i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\ZZ Top\\\\Greatest Hits\\\\14 Sleeping Bag.m4a---music --nocolor --ext-music-add rA --ext-music-add *.RA-expected8]",
+            "params": {
+                "str_2use": "i:\\Seagate\\Media\\Music\\Mem02\\ZZ Top\\Greatest Hits\\14 Sleeping Bag.m4a",
+                "args": "--music --nocolor --ext-music-add rA --ext-music-add *.RA",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem02\\ZZ Top\\Greatest Hits\\14 Sleeping Bag.m4a\" --music --nocolor --ext-music-add rA --ext-music-add *.RA",
+                    "Run as: [py.exe houskeep_dev.py -s \"i:\\Seagate\\Media\\Music\\Mem02\\ZZ Top\\Greatest Hits\\14 Sleeping Bag.m4a\" --music --nocolor --ext-music-add rA --ext-music-add *.RA]",
+                    "Search file  is [14 Sleeping Bag*]",
+                    "Regex string is [^(14 Sleeping Bag)]",
+                    "Searching for Music [mp3 flac wav m4a m4p ra m3u]",
+                    "\u2561 Music: H:\\Users\\emues\\Music\\ [ mp3 flac wav m4a m4p ra m3u ] \u255e",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [14 Sleeping Bag*] [M:mp3 flac wav \"m4a\" m4p ra m3u]"
+                ]
+            },
+            "param": "i:\\\\Seagate\\\\Media\\\\Music\\\\Mem02\\\\ZZ Top\\\\Greatest Hits\\\\14 Sleeping Bag.m4a---music --nocolor --ext-music-add rA --ext-music-add *.RA-expected8",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 1.9189975000044797,
+                "max": 1.9941693999862764,
+                "mean": 1.9461039999951026,
+                "stddev": 0.02645753335253281,
+                "rounds": 8,
+                "median": 1.9445068999921205,
+                "iqr": 0.03706054999202024,
+                "q1": 1.923132550000446,
+                "q3": 1.9601930999924662,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 1.9189975000044797,
+                "hd15iqr": 1.9941693999862764,
+                "ops": 0.5138471530825262,
+                "total": 15.568831999960821,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[J:\\\\TV - Seen\\\\Das Boot (2018) - season 1\\\\Das Boot (2018) S01E05..mp4---videos --nocolor-expected9]",
+            "fullname": "test_py_benchmark.py::test_file_001[J:\\\\TV - Seen\\\\Das Boot (2018) - season 1\\\\Das Boot (2018) S01E05..mp4---videos --nocolor-expected9]",
+            "params": {
+                "str_2use": "J:\\TV - Seen\\Das Boot (2018) - season 1\\Das Boot (2018) S01E05..mp4",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s \"J:\\TV - Seen\\Das Boot (2018) - season 1\\Das Boot (2018) S01E05..mp4\" --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s \"J:\\TV - Seen\\Das Boot (2018) - season 1\\Das Boot (2018) S01E05..mp4\" --videos --nocolor]",
+                    "Search file  is [Das Boot (2018) S01E05.*]",
+                    "Regex string is [^(Das Boot \\(2018\\) S01E05\\.)]",
+                    "earching for Videos [mkv avi mp4 mpg mov m4v]",
+                    "\u2561 Videos: J:\\ [ mkv avi mp4 mpg mov m4v ] \u255e",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [Das Boot (2018) S01E05.*] [V:mkv avi \"mp4\" mpg mov m4v]"
+                ]
+            },
+            "param": "J:\\\\TV - Seen\\\\Das Boot (2018) - season 1\\\\Das Boot (2018) S01E05..mp4---videos --nocolor-expected9",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 1,
+                "max_time": 15.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 2.433094699983485,
+                "max": 2.748973700014176,
+                "mean": 2.563338166665441,
+                "stddev": 0.14158467180252982,
+                "rounds": 6,
+                "median": 2.5168249499984086,
+                "iqr": 0.2908846999926027,
+                "q1": 2.436713000002783,
+                "q3": 2.7275976999953855,
+                "iqr_outliers": 0,
+                "stddev_outliers": 2,
+                "outliers": "2;0",
+                "ld15iqr": 2.433094699983485,
+                "hd15iqr": 2.748973700014176,
+                "ops": 0.3901162995208181,
+                "total": 15.380028999992646,
+                "iterations": 1
+            }
+        }
+    ],
+    "datetime": "2025-09-24T11:52:16.525385+00:00",
+    "version": "5.1.0"
+}

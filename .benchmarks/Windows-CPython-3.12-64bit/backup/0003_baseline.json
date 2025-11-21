@@ -1,0 +1,556 @@
+{
+    "machine_info": {
+        "node": "DESKTOP-86IPJHE",
+        "processor": "Intel64 Family 6 Model 61 Stepping 4, GenuineIntel",
+        "machine": "AMD64",
+        "python_compiler": "MSC v.1940 64 bit (AMD64)",
+        "python_implementation": "CPython",
+        "python_implementation_version": "3.12.4",
+        "python_version": "3.12.4",
+        "python_build": [
+            "tags/v3.12.4:8e8a4ba",
+            "Jun  6 2024 19:30:16"
+        ],
+        "release": "10",
+        "system": "Windows",
+        "cpu": {
+            "python_version": "3.12.4.final.0 (64 bit)",
+            "cpuinfo_version": [
+                9,
+                0,
+                0
+            ],
+            "cpuinfo_version_string": "9.0.0",
+            "arch": "X86_64",
+            "bits": 64,
+            "count": 4,
+            "arch_string_raw": "AMD64",
+            "vendor_id_raw": "GenuineIntel",
+            "brand_raw": "Intel(R) Core(TM) i7-5500U CPU @ 2.40GHz",
+            "hz_advertised_friendly": "2.4000 GHz",
+            "hz_actual_friendly": "2.4010 GHz",
+            "hz_advertised": [
+                2400000000,
+                0
+            ],
+            "hz_actual": [
+                2401000000,
+                0
+            ],
+            "l2_cache_size": 262144,
+            "stepping": 4,
+            "model": 61,
+            "family": 6,
+            "l3_cache_size": 4194304,
+            "flags": [
+                "3dnow",
+                "3dnowprefetch",
+                "abm",
+                "acpi",
+                "adx",
+                "aes",
+                "apic",
+                "avx",
+                "avx2",
+                "bmi1",
+                "bmi2",
+                "clflush",
+                "cmov",
+                "cx16",
+                "cx8",
+                "de",
+                "ds_cpl",
+                "dtes64",
+                "dts",
+                "erms",
+                "est",
+                "f16c",
+                "fma",
+                "fpu",
+                "fxsr",
+                "ht",
+                "ia64",
+                "intel_pt",
+                "invpcid",
+                "lahf_lm",
+                "mca",
+                "mce",
+                "mmx",
+                "monitor",
+                "movbe",
+                "msr",
+                "mtrr",
+                "osxsave",
+                "pae",
+                "pat",
+                "pbe",
+                "pcid",
+                "pclmulqdq",
+                "pdcm",
+                "pge",
+                "pni",
+                "popcnt",
+                "pse",
+                "pse36",
+                "rdrnd",
+                "rdseed",
+                "sep",
+                "serial",
+                "smap",
+                "smep",
+                "ss",
+                "sse",
+                "sse2",
+                "sse4_1",
+                "sse4_2",
+                "ssse3",
+                "tm",
+                "tm2",
+                "tsc",
+                "tscdeadline",
+                "vme",
+                "vmx",
+                "x2apic",
+                "xsave",
+                "xtpr"
+            ],
+            "l2_cache_line_size": 256,
+            "l2_cache_associativity": 6
+        }
+    },
+    "commit_info": {
+        "id": "631dd4c8d8e302eac61f01f5eb3f13bdda2d63cf",
+        "time": "2024-10-02T22:24:21-04:00",
+        "author_time": "2024-10-02T22:24:21-04:00",
+        "dirty": true,
+        "project": "Houskeep",
+        "branch": "master"
+    },
+    "benchmarks": [
+        {
+            "group": null,
+            "name": "test_ext_001[*.exe---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected0]",
+            "fullname": "test_py_benchmark.py::test_ext_001[*.exe---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected0]",
+            "params": {
+                "str_2use": "*.exe",
+                "args": "--videos --games --software --dir-all-add c:\\temp --nocolor",
+                "expected": [
+                    "Extension only was passed [*.exe]",
+                    "Search file/string is [exe]",
+                    "Regex  file/string is [(exe)]",
+                    "-->  c:\\temp",
+                    "Games: c:\\temp\\ [ exe ]",
+                    "\u2561 Videos: c:\\temp\\ [ exe ] \u255e",
+                    "] >>-------> [*.exe] [V:exe G:\"exe\" S:\"exe\"]",
+                    "Run as: [py.exe houskeep_dev.py -s *.exe --videos --games --software --dir-all-add c:\\temp --nocolor]",
+                    "Py.exe houskeep_dev.py -s *.exe --videos --games --software --dir-all-add c:\\temp --nocolor"
+                ]
+            },
+            "param": "*.exe---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.057951100010541,
+                "max": 6.85233550000703,
+                "mean": 4.994701233338371,
+                "stddev": 1.6087780250908146,
+                "rounds": 3,
+                "median": 4.073817099997541,
+                "iqr": 2.0957882999973663,
+                "q1": 4.061917600007291,
+                "q3": 6.1577059000046575,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 4.057951100010541,
+                "hd15iqr": 6.85233550000703,
+                "ops": 0.20021217552017972,
+                "total": 14.984103700015112,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_ext_001[*.123---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected1]",
+            "fullname": "test_py_benchmark.py::test_ext_001[*.123---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected1]",
+            "params": {
+                "str_2use": "*.123",
+                "args": "--videos --games --software --dir-all-add c:\\temp --nocolor",
+                "expected": [
+                    "Extension only was passed [*.123]",
+                    "Search file/string is [123]",
+                    "Regex  file/string is [(123)]",
+                    "Searching for Videos [123]",
+                    "Searching for Games [123]",
+                    "-->  c:\\temp",
+                    "\u2561 Games: c:\\temp\\ [ 123 ] \u255e",
+                    "\u2552\u2550>> *** Total file(s) located:  [   16 /    16] >>-------> [*.123] [V:\"123\" G:\"123\" S:\"123\"]"
+                ]
+            },
+            "param": "*.123---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.885779799995362,
+                "max": 5.717016700000386,
+                "mean": 4.533875233333674,
+                "stddev": 1.0261885008712304,
+                "rounds": 3,
+                "median": 3.998829200005275,
+                "iqr": 1.373427675003768,
+                "q1": 3.91404214999784,
+                "q3": 5.287469825001608,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 3.885779799995362,
+                "hd15iqr": 5.717016700000386,
+                "ops": 0.2205618700417388,
+                "total": 13.601625700001023,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[alien---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected0]",
+            "fullname": "test_py_benchmark.py::test_match_001[alien---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected0]",
+            "params": {
+                "str_2use": "alien",
+                "args": "--videos --games --software --dir-all-add c:\\temp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s alien --videos --games --software --dir-all-add c:\\temp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s alien --videos --games --software --dir-all-add c:\\temp --nocolor]",
+                    "Regex  file/string is [(alien)]",
+                    "Searching for Software [exe iso zip]",
+                    "Searching for Games [exe iso zip]",
+                    "Search file/string is [*alien]"
+                ]
+            },
+            "param": "alien---videos --games --software --dir-all-add c:\\\\temp --nocolor-expected0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.6908129999937955,
+                "max": 6.580243899996276,
+                "mean": 6.011779999995876,
+                "stddev": 0.49367283508553456,
+                "rounds": 3,
+                "median": 5.764283099997556,
+                "iqr": 0.6670731750018604,
+                "q1": 5.709180524994736,
+                "q3": 6.376253699996596,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 5.6908129999937955,
+                "hd15iqr": 6.580243899996276,
+                "ops": 0.1663400856319902,
+                "total": 18.035339999987627,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[ali*1---videos --games --software --dir-all-add c:\\\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games c:\\\\temp --nocolor-expected1]",
+            "fullname": "test_py_benchmark.py::test_match_001[ali*1---videos --games --software --dir-all-add c:\\\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games c:\\\\temp --nocolor-expected1]",
+            "params": {
+                "str_2use": "ali*1",
+                "args": "--videos --games --software --dir-all-add c:\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games c:\\temp --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s ali*1 --videos --games --software --dir-all-add c:\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games c:\\temp --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s ali*1 --videos --games --software --dir-all-add c:\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games c:\\temp --nocolor]",
+                    "Regex  file/string is [ali[^\\\\]*?1]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v 456 123]",
+                    "\u2561 Videos: c:\\temp\\ [ mkv avi mp4 mpg mov m4v 456 123 ] \u255e",
+                    "[8.3 ]  07/03/2017  04:18 AM     4,593,483,776 ALIEN_~1.ISO ALIEN_ANTHOLOGY_BONUS_DISC.iso",
+                    "[8.3 ]  07/03/2017  04:18 AM     4,655,644,672 ALIEN3~1.ISO ALIEN3_SE_ANTHOLOGY_EXTRAS.iso",
+                    "[8.3 ]  07/03/2017  04:17 AM     4,652,433,408 ALIENS~1.ISO ALIENS_SE_ANTHOLOGY_EXTRAS.iso",
+                    "] >>-------> [ali*1] [V:\"mkv\" avi \"mp4\" mpg mov \"m4v\" 456 \"123\" G:exe iso zip 456 S:098]"
+                ]
+            },
+            "param": "ali*1---videos --games --software --dir-all-add c:\\\\temp --d8-dot-3 --ext-videos-add 123 --ext-all-add 456 --ext-software 098 --dir-games c:\\\\temp --nocolor-expected1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 5.993958899998688,
+                "max": 8.861318099996424,
+                "mean": 6.971200666666846,
+                "stddev": 1.6372060598897789,
+                "rounds": 3,
+                "median": 6.058325000005425,
+                "iqr": 2.150519399998302,
+                "q1": 6.010050425000372,
+                "q3": 8.160569824998674,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 5.993958899998688,
+                "hd15iqr": 8.861318099996424,
+                "ops": 0.14344731242374809,
+                "total": 20.913602000000537,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_match_001[al?e*n---videos-expected2]",
+            "fullname": "test_py_benchmark.py::test_match_001[al?e*n---videos-expected2]",
+            "params": {
+                "str_2use": "al?e*n",
+                "args": "--videos",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s al?e*n --videos",
+                    "Run as: [py.exe houskeep_dev.py -s al?e*n --videos]",
+                    "Search file/string is [*al?e*n]",
+                    "Regex  file/string is [al\\[^\\.\\]e[^\\\\]*?n]",
+                    "] >>-------> [al?e*n] [V:mkv avi mp4 mpg mov m4v]"
+                ]
+            },
+            "param": "al?e*n---videos-expected2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.339641399987158,
+                "max": 4.45956180000212,
+                "mean": 4.407596133329207,
+                "stddev": 0.06153830737556624,
+                "rounds": 3,
+                "median": 4.423585199998342,
+                "iqr": 0.08994030001122155,
+                "q1": 4.360627349989954,
+                "q3": 4.450567650001176,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 4.339641399987158,
+                "hd15iqr": 4.45956180000212,
+                "ops": 0.22688104121841718,
+                "total": 13.222788399987621,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[C:\\\\Users\\\\emues\\\\Downloads\\\\Movies\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Deleted Scene.mkv---videos --nocolor-expected0]",
+            "fullname": "test_py_benchmark.py::test_file_001[C:\\\\Users\\\\emues\\\\Downloads\\\\Movies\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Deleted Scene.mkv---videos --nocolor-expected0]",
+            "params": {
+                "str_2use": "C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Deleted Scene.mkv",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Deleted Scene.mkv --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Deleted Scene.mkv --videos --nocolor]",
+                    "Search file/string is [Deleted Scene*]",
+                    "Regex  file/string is [^(Deleted Scene)]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v]",
+                    "] >>-------> [C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Deleted Scene.mkv] [V:\"mkv\" avi mp4 mpg mov m4v]"
+                ]
+            },
+            "param": "C:\\\\Users\\\\emues\\\\Downloads\\\\Movies\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Deleted Scene.mkv---videos --nocolor-expected0",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.850536400001147,
+                "max": 4.093963299994357,
+                "mean": 3.9913123666628962,
+                "stddev": 0.12611226163582506,
+                "rounds": 3,
+                "median": 4.029437399993185,
+                "iqr": 0.18257017499490757,
+                "q1": 3.8952616499991564,
+                "q3": 4.077831824994064,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 3.850536400001147,
+                "hd15iqr": 4.093963299994357,
+                "ops": 0.25054415894692095,
+                "total": 11.973937099988689,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[C:\\\\Users\\\\emues\\\\Downloads\\\\Movies\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Trailer.mkv---videos --nocolor-expected1]",
+            "fullname": "test_py_benchmark.py::test_file_001[C:\\\\Users\\\\emues\\\\Downloads\\\\Movies\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Trailer.mkv---videos --nocolor-expected1]",
+            "params": {
+                "str_2use": "C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Trailer.mkv",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Trailer.mkv --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Trailer.mkv --videos --nocolor]",
+                    "Search file/string is [Trailer*]",
+                    "Regex  file/string is [^(Trailer)]",
+                    "Searching for Videos [mkv avi mp4 mpg mov m4v]",
+                    "] >>-------> [C:\\Users\\emues\\Downloads\\Movies\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\Featurettes\\Trailer.mkv] [V:\"mkv\" avi mp4 mpg mov \"m4v\"]"
+                ]
+            },
+            "param": "C:\\\\Users\\\\emues\\\\Downloads\\\\Movies\\\\Lord of the Flies 1963 Criterion (1080p Bluray x265 HEVC 10bit AAC 1.0 Tigole)\\\\Featurettes\\\\Trailer.mkv---videos --nocolor-expected1",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.8990023999940604,
+                "max": 4.097168399996008,
+                "mean": 3.9971819999967315,
+                "stddev": 0.09909535450193291,
+                "rounds": 3,
+                "median": 3.995375200000126,
+                "iqr": 0.14862450000146055,
+                "q1": 3.9230955999955768,
+                "q3": 4.071720099997037,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 3.8990023999940604,
+                "hd15iqr": 4.097168399996008,
+                "ops": 0.2501762491677431,
+                "total": 11.991545999990194,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\Movies\\\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL.mkv---videos --nocolor-expected2]",
+            "fullname": "test_py_benchmark.py::test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\Movies\\\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL.mkv---videos --nocolor-expected2]",
+            "params": {
+                "str_2use": "I:\\Seagate\\Media\\Videos\\Movies\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL.mkv",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s I:\\Seagate\\Media\\Videos\\Movies\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL.mkv --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s I:\\Seagate\\Media\\Videos\\Movies\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL.mkv --videos --nocolor]",
+                    "Search file/string is [Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL*]",
+                    "Regex  file/string is [^(Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL)]",
+                    "[   1] Match found --> I:\\Seagate\\Media\\Videos\\Movies\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\Sample\\bob.marley.one.love.2024.hdr.2160p.web.h265-ethel.sample.mkv",
+                    "[   1]  03/30/2024  04:15 AM        56,623,104 bob.marley.one.love.2024.hdr.2160p.web.h265-ethel.sample.mkv",
+                    "] >>-------> [I:\\Seagate\\Media\\Videos\\Movies\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL.mkv] [V:\"mkv\" avi mp4 mpg mov m4v]"
+                ]
+            },
+            "param": "I:\\\\Seagate\\\\Media\\\\Videos\\\\Movies\\\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL[TGx]\\\\Bob.Marley.One.Love.2024.HDR.2160p.WEB.h265-ETHEL.mkv---videos --nocolor-expected2",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 4.123006800000439,
+                "max": 7.05669549999584,
+                "mean": 5.392570633334496,
+                "stddev": 1.5061179083608953,
+                "rounds": 3,
+                "median": 4.998009600007208,
+                "iqr": 2.2002665249965503,
+                "q1": 4.341757500002132,
+                "q3": 6.542024024998682,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 4.123006800000439,
+                "hd15iqr": 7.05669549999584,
+                "ops": 0.18544031557388244,
+                "total": 16.177711900003487,
+                "iterations": 1
+            }
+        },
+        {
+            "group": null,
+            "name": "test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\TV\\\\Hannah-Barbera\\\\Hanna-Barbera Classics - Hillbilly Bears\\\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v---videos --nocolor-expected3]",
+            "fullname": "test_py_benchmark.py::test_file_001[I:\\\\Seagate\\\\Media\\\\Videos\\\\TV\\\\Hannah-Barbera\\\\Hanna-Barbera Classics - Hillbilly Bears\\\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v---videos --nocolor-expected3]",
+            "params": {
+                "str_2use": "I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v",
+                "args": "--videos --nocolor",
+                "expected": [
+                    "Py.exe houskeep_dev.py -s I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v --videos --nocolor",
+                    "Run as: [py.exe houskeep_dev.py -s I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v --videos --nocolor]",
+                    "Search file/string is [HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip*]",
+                    "Regex  file/string is [^(HillbillyBears-SlapHappyGrandpappy\\[SlumLord}VHSRip)]",
+                    "[Orig] >>------------> I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v",
+                    "[Orig]  07/18/2024  12:13 PM        70,837,545 HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v",
+                    "\u2552\u2550>> *** Total file(s) located:  [    0 /     0] >>-------> [I:\\Seagate\\Media\\Videos\\TV\\Hannah-Barbera\\Hanna-Barbera Classics - Hillbilly Bears\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v] [V:mkv avi mp4 mpg mov \"m4v\"]"
+                ]
+            },
+            "param": "I:\\\\Seagate\\\\Media\\\\Videos\\\\TV\\\\Hannah-Barbera\\\\Hanna-Barbera Classics - Hillbilly Bears\\\\HillbillyBears-SlapHappyGrandpappy[SlumLord}VHSRip.m4v---videos --nocolor-expected3",
+            "extra_info": {},
+            "options": {
+                "disable_gc": true,
+                "timer": "perf_counter",
+                "min_rounds": 3,
+                "max_time": 1.0,
+                "min_time": 5e-06,
+                "warmup": false
+            },
+            "stats": {
+                "min": 3.9399288999993587,
+                "max": 4.0825521999940975,
+                "mean": 4.015126233328677,
+                "stddev": 0.07162853502770995,
+                "rounds": 3,
+                "median": 4.022897599992575,
+                "iqr": 0.10696747499605408,
+                "q1": 3.960671074997663,
+                "q3": 4.067638549993717,
+                "iqr_outliers": 0,
+                "stddev_outliers": 1,
+                "outliers": "1;0",
+                "ld15iqr": 3.9399288999993587,
+                "hd15iqr": 4.0825521999940975,
+                "ops": 0.24905817199449937,
+                "total": 12.045378699986031,
+                "iterations": 1
+            }
+        }
+    ],
+    "datetime": "2024-10-04T08:55:05.048134",
+    "version": "4.0.0"
+}

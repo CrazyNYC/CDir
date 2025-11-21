@@ -1,0 +1,4 @@
+cdir c:\*.*  f:\*.* h:\*.* i:\*.* /s 
+cdir c:\windows\system32\*.log c:\windows\system32\*.ini c:\windows\system32\*.txt c:\windows\system32\*.exe 
+cdir c:\windows\system32\*.log c:\windows\system32\*.ini c:\windows\system32\*.txt c:\windows\system32\*.exe 
+cdir c:\windows\system32\*.log c:\windows\system32\*.ini c:\windows\system32\*.txt c:\windows\system32\*.exe 

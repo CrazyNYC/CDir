@@ -1,0 +1,106 @@
+Three types of records;
+	1. DOS/API (ext->assoc->ftype) *.exe
+		a. filetype = 'exefile'
+		b. ftype = '..exefile="%1 %*"'
+	2. Registry (ext->winreg prog_id->winreg open command) *.txt
+		a. filetype = '.txtfilelegacy' (from assoc but no DOS ftype)
+		b. prog_id = 'AppX4ztfk9wxr86nxmzzq47px0nh0e58b8fw'
+		c. ftype = '**"C:\\Program Files\\WindowsApps\\Microsoft.WindowsNotepad_11.2507.26.0_x64__8wekyb3d8bbwe\\Notepad\\Notepad.exe"'
+		d. filetype = '**"C:\\Program Files\\WindowsApps\\Microsoft.WindowsNotepad_11.2507.26.0_x64__8wekyb3d8bbwe\\Notepad\\Notepad.exe"' -> only if no assoc (registry is AppX...)
+		d2. filetype = '.txtfilelegacy'
+	
+	3. DISM extract (ext->dism (c:\users\emues\AppAssoc.xml))
+	
+	
+.txt has assoc but not ftype, so, goes to Registry
+
+** If assoc but no ftype, we might be mistakenly following a diff logic path than if no assoc at all!!!  It appears that if no assoc, then we are going right into DISM instead of checking Registry first.
+
+
+=======================================================================
+p_ext            = .ini
+assoc_1          =
+assoc_1_ext      =
+assoc_1_type     =
+ftype_out_1      = <unknown assoc>
+prog_reg_id_1    = AppXhk4des8gf2xat3wtyzc5q06ny78jhkqx
+ftype_reg_out_1  = "C:\Program Files\WindowsApps\Microsoft.WindowsNotepad_11.2507.26.0_x64__8wekyb3d8bbwe\Notepad\Notepad.exe"
+ftype_dism_1     = <Association Identifier=".ini" ProgId="AppXhk4des8gf2xat3wtyzc5q06ny78jhkqx" ApplicationName="Notepad" />
+=======================================================================
+p_ext            = .txt
+
+assoc_1          = ['.txt', 'txtfilelegacy']
+assoc_1_ext      = .txt
+assoc_1_type     = txtfilelegacy
+ftype_out_1      =
+prog_reg_id_1    = AppX4ztfk9wxr86nxmzzq47px0nh0e58b8fw
+ftype_reg_out_1  = "C:\Program Files\WindowsApps\Microsoft.WindowsNotepad_11.2507.26.0_x64__8wekyb3d8bbwe\Notepad\Notepad.exe"
+ftype_dism_1     = <Element 'Association' at 0x0000023D9134FEC0>
+ftype_dism_1.get('ProgId')          = AppX4ztfk9wxr86nxmzzq47px0nh0e58b8fw
+ftype_dism_1.get('ApplicationName') = Notepad
+line_1=AppX4ztfk9wxr86nxmzzq47px0nh0e58b8fw="C:\Program Files\WindowsApps\Microsoft.WindowsNotepad_11.2507.26.0_x64__8wekyb3d8bbwe\Notepad\Notepad.exe"
+=======================================================================
+p_ext            = .exe
+assoc_1          = ['.exe', 'exefile']
+assoc_1_ext      = .exe
+assoc_1_type     = exefile
+ftype_out_1      = exefile="%1" %*
+prog_reg_id_1    = None
+ftype_reg_out_1  = <unknown prog_id>
+ftype_dism_1     = None
+=======================================================================
+p_ext            = .log
+
+assoc_1          =
+assoc_1_ext      =
+assoc_1_type     =
+ftype_out_1      = <unknown> assoc
+
+prog_reg_id_1    = AppX4ztfk9wxr86nxmzzq47px0nh0e58b8fw
+ftype_reg_out_1  = "C:\Program Files\WindowsApps\Microsoft.WindowsNotepad_11.2507.26.0_x64__8wekyb3d8bbwe\Notepad\Notepad.exe"
+
+ftype_dism_1     = <Element 'Association' at 0x000002141A703EC0>
+ftype_dism_1.get('ProgId')          = Applications\notepad++.exe
+ftype_dism_1.get('ApplicationName') = Notepad++
+line_1=<unknown> assoc
+=======================================================================
+p_ext            = .bat
+assoc_1          = ['.bat', 'batfile']
+assoc_1_ext      = .bat
+assoc_1_type     = batfile
+ftype_out_1      = batfile="%1" %*
+prog_reg_id_1    = None
+ftype_reg_out_1  = <unknown prog_id>
+ftype_dism_1     = None
+=======================================================================
+p_ext            = .pdf
+assoc_1          =
+assoc_1_ext      =
+assoc_1_type     =
+ftype_out_1      = <unknown> assoc
+prog_reg_id_1    = MSEdgePDF
+ftype_reg_out_1  = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --single-argument %1
+ftype_dism_1     = <Association Identifier=".pdf" ProgId="MSEdgePDF" ApplicationName="Microsoft Edge" />
+
+if not ftype_out_1:
+	if not ftype_reg_out_1:
+		ftype_dism_1.ProgId '=' ftype_dism_1.ftype_reg_out_1
+	else:
+		ftype_reg_out_1
+else:
+	ftype_out_1
+	
+=======================================================================
+p_ext            = .xml
+assoc_1          =
+assoc_1_ext      =
+assoc_1_type     =
+ftype_out_1      = <unknown> assoc
+prog_reg_id_1    = MSEdgeHTM
+ftype_reg_out_1  = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --single-argument %1
+ftype_dism_1     = <Association Identifier=".xml" ProgId="MSEdgeHTM" ApplicationName="Microsoft Edge" />
+=======================================================================
+=======================================================================
+=======================================================================
+
+assoc_type or 
