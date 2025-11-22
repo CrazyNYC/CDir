@@ -58,7 +58,7 @@ def main():
             print(f"Debug is set to True {flag}")
             debug = True
 
-    # if /notypeapp is specified on the command-line
+    # if /reset is specified on the command-line
     reset = False
     if any(flag.lower() in sys.argv for flag in (['/reset'])):
         reset = True
@@ -153,11 +153,11 @@ def main():
     if any((flag.lower() in sys.argv or flag in dir_env_var) for flag in ('/O', '/o', '-O', '-o')):
         order_specified = True
 
-    # if /notypeapp is specified on the command-line
-    no_typeapp = False
-    while any(flag.lower() in sys.argv for flag in (['/notypeapp'])):
-        no_typeapp = True
-        sys.argv.remove('/notypeapp')
+    # if /coltypeapp is specified on the command-line
+    coltypeapp = False
+    while any(flag.lower() in sys.argv for flag in (['/coltypeapp'])):
+        coltypeapp = True
+        sys.argv.remove('/coltypeapp')
 
     # if /nodetail is specified on the command-line
     no_detail = False
@@ -193,7 +193,7 @@ def main():
 
     # certain switches reformat the screen thus that there is no convenient place for type/app col
     if any((flag.lower() in sys.argv or flag.lower() in dir_env_var.lower()) for flag in (['/w'])):
-        no_typeapp = True
+        coltypeapp = False
 
     # if /1 is specified on the command-line then show ext details
     #   every time a new ext is encountered
@@ -322,7 +322,7 @@ def main():
                 # we get the file-type and app-to-use fr that ext.
                 p_filename, p_ext = os.path.splitext(line[file_name_start:])
                 p_size = line[(file_name_start - 15):file_name_start - 1].replace(",", "")
-                if not no_typeapp:
+                if coltypeapp:
                     # print(f"p_size = '{p_size}'") if p_size else None
                     # print(f"line[file_name_start:] = '{line[file_name_start-15:file_name_start-1]}'") if line[file_name_start-15:] else None
                     ret_val3 = get_metadata(p_ext, p_size) if p_ext else ""
@@ -553,8 +553,28 @@ def main():
         print(f"\n{co.BLDWHITEFG}      /0          {co.DIMWHITEFG}DEBUG mode (advanced use only){co.ENDC}")
         print(f"{co.BLDWHITEFG}      /1          {co.DIMWHITEFG}DEBUG mode (show ext dtls/advanced use only){co.ENDC}")
         print(f"{co.BLDWHITEFG}      /notypeapp  {co.DIMWHITEFG}Suppresses Type/App column{co.ENDC}")
-        print("""Attribute flags are as follows;\n\ta - archive bit set\n\th - hidden file\n\ta - archive bit set"\
-        
+
+        title_color = co.BLDWHITEFG
+        pnemonic_color = co.BLDWHITEFG
+        dash_color = co.DIMWHITEFG
+        desc_color = co.DIMWHITEFG
+        print(f"""\n{title_color}    File attribute flags are as follows;
+        {pnemonic_color}r{dash_color} - {desc_color}read-only bit set
+        {pnemonic_color}h{dash_color} - {desc_color}hidden file
+        {pnemonic_color}s{dash_color} - {desc_color}system file
+        {pnemonic_color}d{dash_color} - {desc_color}directory
+        {pnemonic_color}a{dash_color} - {desc_color}archive bit set
+        {pnemonic_color}n{dash_color} - {desc_color}normal file
+        {pnemonic_color}t{dash_color} - {desc_color}temp file
+        {pnemonic_color}c{dash_color} - {desc_color}compressed file
+        {pnemonic_color}o{dash_color} - {desc_color}offline file
+        {pnemonic_color}e{dash_color} - {desc_color}encrypted
+        {pnemonic_color}i{dash_color} - {desc_color}no index file
+        {pnemonic_color}r{dash_color} - {desc_color}reparse [SYMLINK, etc.]
+        {pnemonic_color}s{dash_color} - {desc_color}sparse
+        {pnemonic_color}x{dash_color} - {desc_color}extended attributes
+        {pnemonic_color}p{dash_color} - {desc_color}pinned
+        {pnemonic_color}u{dash_color} - {desc_color}unpinned
         """)
 
     # signal.signal(signal.SIGINT, signal.default_int_handler)
@@ -1838,7 +1858,7 @@ def get_metadata(p_ext: str, p_size: str) -> str | None:
 
     p_ext = p_ext.lower()
     p_size = p_size.strip().replace(",","").replace("(","").replace(")","")
-
+# TODO: Is getting rid of the parens really the right thing to do?  We prob shouldn't count the size though.
     if not p_ext or p_ext.startswith(('.movie_')):  # or p_ext.startswith((f'.movie_','.dll_','.fon_','.exe_','.mui_','.sys_')):
         print(f"No ext was found or will be cached! [{p_ext}]") if debug else None
         return
@@ -1854,6 +1874,7 @@ def get_metadata(p_ext: str, p_size: str) -> str | None:
 
         try:
             ext_cache_size[p_ext] += int(p_size)
+
         except KeyError:
             ext_cache_size[p_ext] = int(p_size)
 
