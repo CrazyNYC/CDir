@@ -1,11 +1,14 @@
-from argparse import ArgumentParser, Namespace
-from logging import exception
-from typing import Any, Optional, Union, TextIO, Dict, Tuple  # , Callable
-from functools import lru_cache
+# from argparse import ArgumentParser, Namespace
+# from logging import exception
+# from typing import Any
+# from functools import lru_cache
 
-import sys, copy, os, re, pickle, time, subprocess, msvcrt, io
+# import sys, copy, os, re, pickle, time, subprocess, msvcrt, io
+import sys, os, re
+from msvcrt import getch, kbhit
+from typing import Optional
 
-from graphics.graphics_ops import BColors, LineDrawingCharacters, ColoredHelpFormatter, ColoredPaginatedArgumentParser
+from graphics.graphics_ops import BColors  #, LineDrawingCharacters, ColoredHelpFormatter, ColoredPaginatedArgumentParser
 from common_tools.common_tools import strip_ascii, begin_timing, end_timing, print_except
 
 co = BColors(False)
@@ -76,6 +79,7 @@ def main():
     if reset and os.path.exists(pickle_dict):
         os.remove(pickle_dict)
 
+    #  load existing extension cache
     if os.path.exists(pickle_dict):
         import gzip
         with gzip.open(pickle_dict, 'rb') as f1:
@@ -90,7 +94,7 @@ def main():
                 if debug else None
             # print(f"Pickle Data load = {pickle_data}")  # if gargs_lcl.verbose else None
 
-    # Check for Admin rights (required for some file data in CDir
+    # Check for Admin rights (required for some file data in CDir)
     import ctypes
     def is_admin():
         try:
@@ -126,14 +130,6 @@ def main():
             exit()
         else:
             print(f"DISM extract file created -->  {assoc_file}")
-
-        # Run it (this will prompt for elevation)
-        # subprocess.run(elevated_cmd)
-
-        # Relaunch the script with admin rights
-        # ctypes.windll.shell32.ShellExecuteW(
-        #     None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-        # sys.exit()
 
     # if a dir is specified and ends with '\' and is quoted, python mistakenly escapes the last quote,
     #  so, we strip the trailing backslashes to avoid
@@ -183,11 +179,17 @@ def main():
         timer = True
         sys.argv.remove('/timer')
 
-    # if /timer is specified on the command-line
+    # if /notimer is specified on the command-line
     # timer = False
     while any(flag.lower() in sys.argv for flag in (['/notimer'])):
         timer = False
         sys.argv.remove('/notimer')
+
+    # if /timer is specified on the command-line
+    color_filename_only = False
+    while any(flag.lower() in sys.argv for flag in (['/filecoloronly'])):
+        color_filename_only = True
+        sys.argv.remove('/filecoloronly')
 
     print(f"sys.argv after processing = {sys.argv}") if debug else None
 
@@ -235,13 +237,29 @@ def main():
         lines = result.stdout.splitlines()
         print(f"{co.BLDYELLOWFG}\t...processing {len(lines):,} lines...\n") if len(lines) > 999 else None
         print()
+        file_name_start = 0
+
+        def replacer(match):
+            prefix = match.group(1)  # everything up to AM/PM
+            spaces = match.group(2)  # leading spaces
+            number = match.group(3)  # the digits
+            suffix = match.group(4)  # everything after
+            return prefix + " " + co.DIMBLACKFG + ('-' * (max(len(spaces)-3,3))) + r"> " + co.DIMWHITEFG + number + suffix
+
         for line in lines:
             line = line.strip()
+            is_dir = False
+            is_dir_name = False
+            is_file = False
+            p_curr_dir = ""
+            p_filename = ""
+            p_ext = ""
+            # are we paging and are we at end-of-page
             if paginate and i % i_page == 0:
                 print(f"{co.BLDMAGENTAFG}Press any key to continue (page {int(i/i_page)})... (Esc or Ctrl-C to exit){co.ENDC}")
                 # keyboard.read_event()
                 # if msvcrt.kbhit():
-                key = msvcrt.getch()
+                key = getch()
                 if key == b'\x1b':  # Esc key
                     print(f"{co.BLDREDFG}[Esc] key pressed. Exiting.{co.ENDC}")
                     break
@@ -252,8 +270,8 @@ def main():
                     print(f"{co.BLDGREENFG}[{key}] pressed.{co.ENDC}") if debug else None
 
             # any keypresses waiting in the buffer?
-            elif msvcrt.kbhit():
-                key = msvcrt.getch()
+            elif kbhit():
+                key = getch()
                 if key == b'\x1b':  # Esc key
                     print(f"{co.BLDREDFG}[Esc] key pressed. Exiting.{co.ENDC}")
                     break
@@ -269,6 +287,8 @@ def main():
             if block_relative_dirs:
                 if (line + " ").find("  . ") > -1:
                     print(f'(line+" ").find("  . " )  = {(line + " ").find("  . ")}') if debug else None
+                    file_name_start = max((line.strip() + " ").find("  . ") + 2,
+                                          0) if file_name_start <= 1 else file_name_start
                     continue
 
                 elif (line + " ").find("  .. ") > -1:
@@ -276,8 +296,10 @@ def main():
                     continue
 
             if any(ext in line for ext in ["<DIR>"]):
-                file_name_start = max((line.strip() + " ").find("  . ") + 2, file_name_start)
+                is_dir = True
+                file_name_start = max((line.strip() + " ").find("  . ") + 2, 0) if file_name_start <= 1 else file_name_start
 
+            file_name_start = 43 if file_name_start == 0 else file_name_start
             color2use = color_2use(p_line=line)
             # directories (overrides any other color criteria)
 
@@ -286,11 +308,13 @@ def main():
             line = line.replace(f"The specified path is invalid.", f"{co.BLDREDFG}\n\tThe specified path is invalid.{co.ENDC}")
 
             if any(ext in line for ext in ["Directory of"]):
+                is_dir_name = True
                 # prefix_line = ''  # must be at least 1 char or will be set below
                 p_curr_dir = strip_ascii(line).replace("Directory of ", "").strip()
-
             # reparse = False
-            if any(ext in line for ext in ["<DIR>","<JUNCTION>", "<SYMLINK>", "<SYMLINKD>", "<REPARSE>"]):
+
+            if any(ext in line for ext in ["<DIR>", "<JUNCTION>", "<SYMLINK>", "<SYMLINKD>", "<REPARSE>"]):
+                is_dir = True
                 if any(ext in line for ext in ["<JUNCTION>", "<SYMLINK>", "<SYMLINKD>", "<REPARSE>"]):
                     reparse = True
                 else:
@@ -304,16 +328,21 @@ def main():
                 line += f"\t{co.DIMWHITEFG}" if len(attrs.items()) > 0 else ""
                 line += '\t' if len(f"{p_filename}{p_ext}") < 4 else ""
                 # line += f"\t{'\t' * max(int((24 - len(f"{p_filename}{p_ext}")) / 8), 1)}{co.DIMWHITEFG}" if len(attrs.items()) > 0 else ""
+
+                # handle attributes
+                color_true = co.BLDWHITEFG
+                color_false = co.DIMBLACKFG
                 for k, v in attrs.items():
                     if k == 'reparse':
-                        line += f"{co.BLDWHITEFG}{k[0]}{co.DIMWHITEFG}" if str(v)[0].lower() == 't' or reparse else f"{co.BLDWHITEFG}{k[0]}{co.DIMWHITEFG}"  # f'{chr(250)}'
+                        line += f"{color_true}{k[0]}{color_false}" if str(v)[0].lower() == 't' or reparse else f"{color_false}{k[0]}"  # f'{chr(250)}'
 
                     else:
-                        line += f"{co.BLDWHITEFG}{k[0]}{co.DIMWHITEFG}" if str(v)[0].lower() == 't' else f"{co.DIMBLACKFG}{k[0]}{co.DIMWHITEFG}"  #f'{chr(250)}'
+                        line += f"{color_true}{k[0]}{color_false}" if str(v)[0].lower() == 't' else f"{color_false}{k[0]}"  #f'{chr(250)}'
 
                 line += f"{co.ENDC}" if len(attrs.items()) > 0 else ""
 
             elif line_lower.startswith(("mon", "tue", "wed", "thu", "fri", "sat", "sun")):
+                is_file = True
                 i += 1
                 prefix_line = f'-({i:>3})-> '
 
@@ -322,10 +351,16 @@ def main():
                 # we get the file-type and app-to-use fr that ext.
                 p_filename, p_ext = os.path.splitext(line[file_name_start:])
                 p_size = line[(file_name_start - 15):file_name_start - 1].replace(",", "")
+
+                # if entire line not color-coded, then files might be harder to follow left-to-right
+                line = re.sub(r'^(.*?\b(?:AM|PM))(\s+)(\d+)(.*)$', replacer, line) if color_filename_only else line
+                # print(f"{prefix_line}{line2}") if debug else None
+
+                ret_val3 = get_metadata(p_ext, p_size) if p_ext else ""
+
                 if coltypeapp:
                     # print(f"p_size = '{p_size}'") if p_size else None
                     # print(f"line[file_name_start:] = '{line[file_name_start-15:file_name_start-1]}'") if line[file_name_start-15:] else None
-                    ret_val3 = get_metadata(p_ext, p_size) if p_ext else ""
                     print(f"ret_val3={ret_val3}") if ret_val3 is not None and debug else None
                     # now, we'll add the type/app column
                     line += f"{format_line(ret_val3, line, color2use)}"
@@ -342,14 +377,22 @@ def main():
             # elif line.find("<DIR>") > -1:
             #     prefix_line = (' '*len(f'-({i:>3})-> ')) if not prefix_line else prefix_line
 
-            elif  any(ext in line for ext in ["File(s)", "Dir(s)"]):
+            elif any(ext in line for ext in ["File(s)", "Dir(s)"]):
                 line = "\t" + line
 
             else:
                 prefix_line = '' if not prefix_line else prefix_line
                 
             try:
-                print(f"{color2use}{prefix_line}{line}{co.ENDC}") if not no_detail else None
+                p_filename, p_ext = os.path.splitext(strip_ascii(line)[file_name_start:]) if not p_filename else (p_filename, p_ext)
+                if p_filename and file_name_start > 1 and color_filename_only and (is_file or is_dir):
+                    print(line)
+                    line_1 = re.sub(f'{p_filename}{p_ext}',f'{color2use}{p_filename}{p_ext}', line)
+                    print(f"{co.DIMWHITEFG}{prefix_line}{line_1}{co.ENDC}") \
+                        if not no_detail else None
+                else:
+                    print(f"{color2use}{prefix_line}{line}{co.ENDC}") \
+                        if not no_detail else None
 
             except UnicodeEncodeError:
                 # print_except(e, "CDIR oops!")
@@ -362,8 +405,8 @@ def main():
 
         from common_tools.common_tools import print_dict
 
-        # no sense in showing extension summary if less than 2 extensions encountered
-        if ext_cache_ctr and len(ext_cache_ctr) > 1:
+        # no sense in showing extension summary if less than 1 extensions encountered
+        if ext_cache_ctr and len(ext_cache_ctr) > 0:
 
             print(f"\n{co.BLDYELLOWFG}All extensions encountered [{co.BLDGREENFG}{len(ext_cache_ctr)} "
                 f"unique{co.BLDYELLOWFG}] are as follows:\n{co.ENDC}") \
@@ -413,95 +456,95 @@ def main():
             groups_ctr  = defaultdict(list)
             groups_size = defaultdict(list)
 
-            # TTL count files by ext
-            ttl_value = 0
-            for key, value in sorted(ext_cache_ctr.items(), key=lambda item: item[1], reverse=True):
-                ttl_value += value
-                # this creates list of extension values (e.g. size, file count) the the extensions that have that value
-                groups_ctr[value].append(key)
+            if ext_cache_ctr and len(ext_cache_ctr) > 1:
+                # TTL count files by ext
+                ttl_value = 0
+                for key, value in sorted(ext_cache_ctr.items(), key=lambda item: item[1], reverse=True):
+                    ttl_value += value
+                    # this creates list of extension values (e.g. size, file count) the the extensions that have that value
+                    groups_ctr[value].append(key)
 
-            # TTL size files by ext
-            ttl_size = 0
-            for key, value in sorted(ext_cache_size.items(), key=lambda item: item[1], reverse=True):
-                ttl_size += value
-                groups_size[key].append(value)
+                # TTL size files by ext
+                ttl_size = 0
+                for key, value in sorted(ext_cache_size.items(), key=lambda item: item[1], reverse=True):
+                    ttl_size += value
+                    groups_size[key].append(value)
 
-            # this creates list of extensions and their value (e.g. size, file count)
-            for ext, val in ext_cache_ctr.items():
-
-                # # there IS GROUING by value for size
-                # groups_ctr[val].append(ext)
-                # # there IS NO GROUING by value for size
-                # groups_size[ext].append(val)
-
+                # this creates list of extensions and their value (e.g. size, file count)
+                joined = ""
                 comma_color = co.REDFG
                 ext_color = co.BLDWHITEFG
                 arrow_color = co.DIMWHITEFG
                 num_color = co.BLDYELLOWFG
-                parts = []
+                for ext, val in ext_cache_ctr.items():
 
-                # for every val (file count),list all keys (extensions) for that val
-                for val2 in sorted(groups_ctr.keys(), reverse=True):
-                    # size2 = groups_size[val2]
-                    exts = f"{comma_color},{ext_color} ".join(sorted(groups_ctr[val2]))
-                    exts = wrap_at_nearest_space(exts, max_width=80, indent=28 * ' ', comma_color=comma_color)
-                    parts.append(
-                        f"\n\t{' '*6}{num_color}{val2:>9,} {arrow_color}-> {ext_color}{exts} {arrow_color}"
-                        # f"\n\t{' '*6}{num_color}{val2:>9,} {arrow_color}-> {ext_color}{exts} ({size2}){arrow_color}"
-                        # f"{max(8 - len(strip_ascii(exts).strip(', ')), 0) * '-'}"  #-> ({arrow_color}{groups_ctr[val]:,}"
-                        # f"{arrow_color}){co.ENDC}"
-                        )
+                    # # there IS GROUING by value for size
+                    # groups_ctr[val].append(ext)
+                    # # there IS NO GROUING by value for size
+                    # groups_size[ext].append(val)
 
-                joined = f"\n\t{co.BLDREDFG}Ext. file counts:\t"+" ".join(parts)
+                    parts = []
 
-                # print ttl files w/ext
-                joined += (
-                    f"\n\t{' '*6}{co.BLDWHITEFG}{'-' * 9}\n\t{' '*6}{num_color}{ttl_value:>9,} {co.DIMREDFG}->{co.BLDWHITEFG} Total file(s) w/extension{co.ENDC}") \
+                    # for every val (file count),list all keys (extensions) for that val
+                    for val2 in sorted(groups_ctr.keys(), reverse=True):
+                        # size2 = groups_size[val2]
+                        exts = f"{comma_color},{ext_color} ".join(sorted(groups_ctr[val2]))
+                        exts = wrap_at_nearest_space(exts, max_width=80, indent=28 * ' ', comma_color=comma_color)
+                        parts.append(
+                            f"\n\t{' '*6}{num_color}{val2:>9,} {arrow_color}-> {ext_color}{exts} {arrow_color}"
+                            # f"\n\t{' '*6}{num_color}{val2:>9,} {arrow_color}-> {ext_color}{exts} ({size2}){arrow_color}"
+                            # f"{max(8 - len(strip_ascii(exts).strip(', ')), 0) * '-'}"  #-> ({arrow_color}{groups_ctr[val]:,}"
+                            # f"{arrow_color}){co.ENDC}"
+                            )
+
+                    joined = f"\n\t{co.BLDREDFG}Ext. file counts:\t"+" ".join(parts)
+
+                    # print ttl files w/ext
+                    joined += (
+                        f"\n\t{' '*6}{co.BLDWHITEFG}{'-' * 9}\n\t{' '*6}{num_color}{ttl_value:>9,} {co.DIMREDFG}->{co.BLDWHITEFG} Total file(s) w/extension{co.ENDC}") \
+                        if not no_ext_sum else None
+
+                    # for every val (size),list all keys (extensions) for that val
+                    parts = []
+                    for key2, val2 in sorted(groups_size.items(), key=lambda item: item[1], reverse=True):
+                        # exts = f"{comma_color},{ext_color} ".join(sorted(groups_size[val]))
+                        exts = f"{key2}"
+                        exts = wrap_at_nearest_space(exts, max_width=80, indent=28 * ' ', comma_color=comma_color)
+                        parts.append(
+                            f"\n\t{num_color}{val2[0]:>17,} {arrow_color}-> {ext_color}{exts} {arrow_color}"
+                            f"{max(8 - len(strip_ascii(exts).strip(', ')), 0) * '-'}-> ({arrow_color}{ext_cache_ctr[key2]:,}"
+                            f"{arrow_color}){co.ENDC}")
+
+                    joined += f"\n\n\t{co.BLDREDFG}Ext. by size:"+"  ".join(parts)
+
+                # prints directly under ext type/app list
+                print(f"\t{co.BLDWHITEFG}{'-'*9}\n\t{ttl_value:>9,} {co.DIMREDFG}->{co.BLDWHITEFG} Total file(s) w/extension{co.ENDC}") \
+                    if no_ext_sum else None
+
+                print(f"{joined.replace(", ",f"{comma_color}, {co.BLDWHITEFG}")}")  \
+                    if not no_val_sum else None
+
+                # print ttl unique extensions
+                print(f"\t\t\t     {co.BLDWHITEFG}{'-'*9}\n\t\t\t     {co.BLDWHITEFG}{len(ext_cache_ctr):<,} {co.DIMREDFG}-> {co.BLDWHITEFG}Total unique extension(s){co.ENDC}")\
+                    if not no_val_sum else None
+
+                # print ttl size
+                print(f"\t{co.BLDWHITEFG}{'-' * 17}\n\t{num_color}{ttl_size:>17,}{co.DIMREDFG} ->{co.BLDWHITEFG} Total size (bytes){co.ENDC}") \
                     if not no_ext_sum else None
-
-                # for every val (size),list all keys (extensions) for that val
-                parts = []
-                for key2, val2 in sorted(groups_size.items(), key=lambda item: item[1], reverse=True):
-                    # exts = f"{comma_color},{ext_color} ".join(sorted(groups_size[val]))
-                    exts = f"{key2}"
-                    exts = wrap_at_nearest_space(exts, max_width=80, indent=28 * ' ', comma_color=comma_color)
-                    parts.append(
-                        f"\n\t{num_color}{val2[0]:>17,} {arrow_color}-> {ext_color}{exts} {arrow_color}"
-                        f"{max(8 - len(strip_ascii(exts).strip(', ')), 0) * '-'}-> ({arrow_color}{ext_cache_ctr[key2]:,}"
-                        f"{arrow_color}){co.ENDC}")
-
-                joined += f"\n\n\t{co.BLDREDFG}Ext. by size:"+"  ".join(parts)
-
-            # prints directly under ext type/app list
-            print(f"\t{co.BLDWHITEFG}{'-'*9}\n\t{ttl_value:>9,} {co.DIMREDFG}->{co.BLDWHITEFG} Total file(s) w/extension{co.ENDC}") \
-                if no_ext_sum else None
-
-            print(f"{joined.replace(", ",f"{comma_color}, {co.BLDWHITEFG}")}")  \
-                if not no_val_sum else None
-
-            # print ttl unique extensions
-            print(f"\t\t\t     {co.BLDWHITEFG}{'-'*9}\n\t\t\t     {co.BLDWHITEFG}{len(ext_cache_ctr):<,} {co.DIMREDFG}-> {co.BLDWHITEFG}Total unique extension(s){co.ENDC}")\
-                if not no_val_sum else None
-
-            # print ttl size
-            print(f"\t{co.BLDWHITEFG}{'-' * 17}\n\t{num_color}{ttl_size:>17,}{co.DIMREDFG} ->{co.BLDWHITEFG} Total size (bytes){co.ENDC}") \
-                if not no_ext_sum else None
 
         # if there is anything to cache, then save
         if ext_cache:
             import gzip
             with gzip.open(pickle_dict, 'wb', compresslevel=7) as f2:
                 import pickle
-                pickle.dump({
-                    'ext_cache': ext_cache
-                }, f2)
+                pickle.dump({'ext_cache': ext_cache}, f2)
                 print(f"\n"
                       f"{co.DIMWHITEFG}Saved {co.BLDWHITEFG}{len(ext_cache):,}{co.DIMWHITEFG} "
                       f"extensions to {co.BLDWHITEFG}{pickle_dict}{co.ENDC}") \
                     if debug else None
                 print(f"Pickle dumped...") if debug else None
 
-        from common_tools.common_tools import convert_seconds
+        # from common_tools.common_tools import convert_seconds
         print(f"\nElapsed time: {end_timing()[1]}") if timer else None
 
     else:  # showing HELP screen(s)
@@ -569,14 +612,14 @@ def main():
         {pnemonic_color}c{dash_color} - {desc_color}compressed file
         {pnemonic_color}o{dash_color} - {desc_color}offline file
         {pnemonic_color}e{dash_color} - {desc_color}encrypted
-        {pnemonic_color}i{dash_color} - {desc_color}no index file
+        {pnemonic_color}i{dash_color} - {desc_color}no index file/dir
         {pnemonic_color}r{dash_color} - {desc_color}reparse [SYMLINK, etc.]
         {pnemonic_color}s{dash_color} - {desc_color}sparse
         {pnemonic_color}x{dash_color} - {desc_color}extended attributes
         {pnemonic_color}p{dash_color} - {desc_color}pinned
         {pnemonic_color}u{dash_color} - {desc_color}unpinned
         """)
-
+# TODO: check-out icacls for additional attributes like owner icacls
     # signal.signal(signal.SIGINT, signal.default_int_handler)
 
     # print(result.stdout)
@@ -934,25 +977,23 @@ def main():
 #     #       -
 #
 #     # --- GROUP 1 --- Media Selection & Limits
-#     group = parser_lcl.add_argument_group("Media Selection & Limits")
+#     group = parser_lcl.add_argument_group("CDir Options/Settings")
 #
-#     add_bool_argument(group, '-M', '--movies', default=False, nargs='?',
-#                       help=f'This will process Movies (as per other arguments and defaults). It may be used in conjunction '
-#                            f'with "{parm_color}-e{normal_color}, {parm_color}--episodes{normal_color}".  '
-#                            f'If so, please see "{parm_color}--set-max-items{normal_color}", "{parm_color}--set-max-movies{normal_color}" '
-#                            f'and "{parm_color}--sets-max-series{normal_color}" for more details on setting limits. '
+#     add_bool_argument(group, '--reset', default=False, nargs='?',
+#                       help=f'This will process a  reset of the extension cache. This may result in slower processing until the'
+#                            f'cache is rebuilt as seperate runs of CDir encounter new extensions.'
 #                            f'{help_text_bool_off} {help_text_tail}'
 #                       )
-#     add_bool_argument(group, '-E', '--episodes', default=False,
-#                       help=f'This will process TV Episodes (as per other arguments and defaults). It may be used in conjuction with "-m, --movies". '
-#                            f'If so, please see "{parm_color}--set max-items{normal_color}", "{parm_color}--set-max-movies{normal_color}" '
-#                            f'and "{parm_color}--sets-max-series{normal_color}" for more details on setting limits. '
+#     add_bool_argument(group, '--col-typeapp', default=False,
+#                       help=f'This will add the column showing the file type and app used to open/launch if available. '
 #                            f'{help_text_bool_off} {help_text_tail}')
 #
-#     add_bool_argument(group, '-T', '--tracks', default=False,
-#                       help=f'This will process Music Tracks (as per other arguments and defaults).'
-#                            f'If so, please see "{parm_color}--set max-items{normal_color}" and "{parm_color}--set-max-tracks{normal_color}" '
-#                            f'for more details on setting limits. '
+#     add_bool_argument(group, '--no-detail', default=False,
+#                       help=f'This will process all files/dirs but not display any detail; only extension totals. '
+#                            f'{help_text_bool_off} {help_text_tail}')
+#
+#     add_bool_argument(group, '--no-extsum', default=False,
+#                       help=f'This will process all files/dirs but not display any detail; only extension totals. '
 #                            f'{help_text_bool_off} {help_text_tail}')
 #
 #     add_int_value_argument(group, '-x', '--set-max-items', type=str2int, default=5, nargs='?',
@@ -1618,7 +1659,7 @@ def main():
 #
 #     # print(f"Max Files = {gargs_lcl.set_max_items}")
 #     return parser_lcl, gargs_lcl, orig_argv
-#
+
 
 def format_line(val_2use: str, line: str, color2use: str) -> str:
     if val_2use is None or val_2use == "":
@@ -1653,10 +1694,13 @@ def format_line(val_2use: str, line: str, color2use: str) -> str:
     return line_add
 
 
-import subprocess, os, winreg
+# import subprocess, os, winreg
+import winreg
 
 
 def get_user_prog_id(ext: str) -> str | None:
+    # def get_user_prog_id(ext: str) -> str | None:
+
     # Gets prog_id (used for assoc. app lookup) from registry by .ext
 
     try:
@@ -1671,11 +1715,16 @@ def get_open_command(prog_id: str | None) -> str | None:
     # Gets assoc. app from Registry by prog_id
 
     try:
-        with winreg.OpenKey(winreg.HKEY_CLASSES_ROOT, fr"{prog_id}\shell\open\command") as key:
+        with winreg.OpenKey(winreg.HKEY_CLASSES_ROOT,
+                            fr"{prog_id}\shell\open\command") as key:
             return winreg.QueryValueEx(key, None)[0]
+
     except FileNotFoundError:
         return None
 
+    except OSError:
+        # Covers other registry access errors
+        return None
 
 import xml.etree.ElementTree as ET
 
@@ -1694,7 +1743,7 @@ def get_record_by_extension(xml_path: str, target_ext: str) -> str | None:
     return None
 
 
-import subprocess, os
+import subprocess  #, os
 def wrap_at_nearest_space(text: str,
                           max_width: int,
                           indent: str = (' '*11),
@@ -1757,8 +1806,8 @@ def pass_filtered(d1, d2, threshold):
     # return a new dict with items from d1 whose keys are in d2 and d2[key] > threshold
     return {k: v for k, v in d1.items() if k in d2 and d2[k] > threshold}
 
-import ctypes
-from ctypes import wintypes
+# import ctypes
+# from ctypes import wintypes
 
 def has_reparse_point(path):
     has_reparse = False
@@ -1788,7 +1837,7 @@ def has_reparse_point(path):
 
     return has_reparse
 
-import os
+# import os
 
 def is_reparse(path):
     try:
@@ -1824,7 +1873,7 @@ def get_file_attributes(path):
 
     # Call GetFileAttributesW from kernel32
     attrs = ctypes.windll.kernel32.GetFileAttributesW(path)
-    if attrs == -1:
+    if attrs == -1:  # did not find
         # raise FileNotFoundError(f"File not found or inaccessible: {path}")
         return {}
 
@@ -1858,7 +1907,6 @@ def get_metadata(p_ext: str, p_size: str) -> str | None:
 
     p_ext = p_ext.lower()
     p_size = p_size.strip().replace(",","").replace("(","").replace(")","")
-# TODO: Is getting rid of the parens really the right thing to do?  We prob shouldn't count the size though.
     if not p_ext or p_ext.startswith(('.movie_')):  # or p_ext.startswith((f'.movie_','.dll_','.fon_','.exe_','.mui_','.sys_')):
         print(f"No ext was found or will be cached! [{p_ext}]") if debug else None
         return
@@ -1946,7 +1994,7 @@ def get_metadata(p_ext: str, p_size: str) -> str | None:
         print(
             f"ftype_dism_1.get('ApplicationName') = {ftype_dism_1.get('ApplicationName')}") if ftype_dism_1 is not None else None
 
-    # if we have info from DOS 'ftype' command, let's just use that.
+    # if we have info fs rom DOS 'ftype' command, let's just use that.
     if ftype_out_1:
         # if we have a prog_id in the registry for that ext, and it's neither a duplicate of
         #   what came from 'ftype' or a mosly cryptic 'AppX...' designation, we'll
