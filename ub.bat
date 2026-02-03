@@ -1,33 +1,24 @@
 @echo off
+::
+:: This file updates the benchmark data for the project whose main dir we're in, 
+::  and that every subsequent pytest run will compare to.  The latest data, if available, 
+::  will be used.
+::
+:: - this script needs to be in the project main directory (ex. h:\Users\<user>\PycharmProjects\<projdir>)
+:: - this script is only a wrapper for the main script ub_main.bat
+:: - 
 setlocal enabledelayedexpansion
-cls
-REM Ok, this is how this works.  benchmarking creates a file in the dir below.  We ??? 
-set "dir=.benchmarks\Windows-CPython-3.12-32bit"
-dir ".benchmarks\Windows-CPython-3.12-32bit\*_1st.json"
-rem pause
+:: enable color vars
+call set_ansi_colors.bat /ON >nul
 
-set "basefile=baseline_1st.json"
+:: call main script
+call ub_main.bat %~dpnx0 %*
 
-rem Loop through all files from 0001 to 0999
-echo Processing files... please wait...
-for /l %%i in (1,1,999) do (
-    rem Format the number to always be 4 digits (e.g., 0001, 0002, ...)
-    set "num=0000%%i"
-    set "num=!num:~-4!"
-    rem Check if the file exists
-    if exist "!dir!\!num!_!basefile!" (
-        rem Copy the latest file so far to benchmark.json
-        echo Copying "!dir!\!num!_!basefile!" to "!dir!\!basefile!"
-        copy /y "!dir!\!num!_!basefile!" "!dir!\!basefile!"
-    )
-)
+goto :end
 
-rem After the loop, copy the last benchmark.json to baseline.json
-rem copy /y benchmark.json baseline.json
-dir "!dir!"
-rem pause
+:end
+:: disable color vars
+call set_ansi_colors.bat /OFF >nul
+endlocal
 
-del "%dir%\????_!basefile!"
-dir "!dir!"
-
-REM call ub2.bat
+goto :eof  :: return from this script

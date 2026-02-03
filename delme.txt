@@ -1,4 +1,1090 @@
-cdir c:\*.*  f:\*.* h:\*.* i:\*.* /s 
-cdir c:\windows\system32\*.log c:\windows\system32\*.ini c:\windows\system32\*.txt c:\windows\system32\*.exe 
-cdir c:\windows\system32\*.log c:\windows\system32\*.ini c:\windows\system32\*.txt c:\windows\system32\*.exe 
-cdir c:\windows\system32\*.log c:\windows\system32\*.ini c:\windows\system32\*.txt c:\windows\system32\*.exe 
+
+h:\Users\emues\PycharmProjects\cdir>REM @echo off 
+
+h:\Users\emues\PycharmProjects\cdir>setlocal EnableDelayedExpansion 
+
+h:\Users\emues\PycharmProjects\cdir>set "noansi=" 
+
+h:\Users\emues\PycharmProjects\cdir>for /F "tokens=1-2 delims= " %a in ("Wed 01/07/2026") do set "start_date=%a %b" 
+
+h:\Users\emues\PycharmProjects\cdir>set "start_date=Wed 01/07/2026" 
+
+h:\Users\emues\PycharmProjects\cdir>for /F "tokens=1-2 delims= " %a in ("20:43:16.52") do set "start_time=%a %b" 
+
+h:\Users\emues\PycharmProjects\cdir>set "start_time=20:43:16.52 " 
+
+h:\Users\emues\PycharmProjects\cdir>echo Start: Wed 01/07/2026 20:43:16.52  
+Start: Wed 01/07/2026 20:43:16.52 
+
+h:\Users\emues\PycharmProjects\cdir>call set_ansi_colors.bat /ON  1>nul 
+
+h:\Users\emues\PycharmProjects\cdir>if "h:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log.gz" == "" (
+call :usage  
+ REM echo Usage: ctype.bat filename [textcolor] [backgroundcolor]  
+ goto :end 
+)  else (
+set "origfile=h:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log.gz"  
+ set "fdrive=h:"  
+ set "fpath=\Users\emues\AppData\Local\Temp\"  
+ set "fname=cdir_all.20260106_103313.log"  
+ set "fext=.gz" 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>set "file=h:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log.gz"  
+
+h:\Users\emues\PycharmProjects\cdir>if not exist "!file!" (
+echo [1;38;2;255;0;0mError: File "!file![1;38;2;255;0;0m" does not exist.[0m  
+ REM exit /b 1  
+ goto :end 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>shift  
+
+h:\Users\emues\PycharmProjects\cdir>set "textcolor=bld_red" 
+
+h:\Users\emues\PycharmProjects\cdir>set "backcolor=bld_black" 
+
+h:\Users\emues\PycharmProjects\cdir>set /a startline=1 
+
+h:\Users\emues\PycharmProjects\cdir>set /a endline=9999999	 
+
+h:\Users\emues\PycharmProjects\cdir>if "/end:10" == "" goto args_done 
+
+h:\Users\emues\PycharmProjects\cdir>rem /fg:<value> 
+
+h:\Users\emues\PycharmProjects\cdir>echo /end:10   | findstr /i "^/fg:"  1>nul 
+
+h:\Users\emues\PycharmProjects\cdir>if not errorlevel 1 (
+set "textcolor=/end:10"  
+ set "textcolor=!textcolor:/fg:=!"  
+ shift 
+ goto parse_args 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>rem /bg:<value> 
+
+h:\Users\emues\PycharmProjects\cdir>echo /end:10   | findstr /i "^/bg:"  1>nul 
+
+h:\Users\emues\PycharmProjects\cdir>if not errorlevel 1 (
+set "backcolor=/end:10"  
+ set "backcolor=!backcolor:/bg:=!"  
+ shift 
+ goto parse_args 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>rem /bg:<value> 
+
+h:\Users\emues\PycharmProjects\cdir>echo /end:10   | findstr /i "^/noansi"  1>nul 
+
+h:\Users\emues\PycharmProjects\cdir>if not errorlevel 1 (
+set "noansi=true"  
+ echo [1;38;2;255;255;0mNOTE:  All ANSI color codes will be stripped from source file[0m  
+ shift 
+ goto parse_args 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>rem /start:<value> 
+
+h:\Users\emues\PycharmProjects\cdir>echo /end:10   | findstr /i "^/start:"  1>nul 
+
+h:\Users\emues\PycharmProjects\cdir>if not errorlevel 1 (
+set "startline=/end:10"  
+ set "startline=!startline:/start:=!"  
+ REM set /a startline=startline  
+ shift 
+ goto parse_args 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>rem /end:<value> 
+
+h:\Users\emues\PycharmProjects\cdir>echo /end:10   | findstr /i "^/end:"  1>nul 
+
+h:\Users\emues\PycharmProjects\cdir>if not errorlevel 1 (
+set "endline=/end:10"  
+ set "endline=!endline:/end:=!"  
+ REM set /a endline=endline  
+ shift 
+ goto parse_args 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if "" == "" goto args_done 
+
+h:\Users\emues\PycharmProjects\cdir>set "fg=" 
+
+h:\Users\emues\PycharmProjects\cdir>set "bg=" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "bld_black" set "fg=[1;38;2;128;128;128m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "bld_red" set "fg=[1;38;2;255;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "bld_yellow" set "fg=[1;38;2;255;255;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "bld_green" set "fg=[1;38;2;0;255;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "bld_blue" set "fg=[1;38;2;0;0;255m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "bld_white" set "fg=[1;38;2;255;255;255m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "bld_yellow" set "fg=[1;38;2;255;255;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "black" set "fg=[1;38;2;0;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "red" set "fg=[1;38;2;128;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "yellow" set "fg=[1;38;2;128;128;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "green" set "fg=[1;38;2;0;128;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "blue" set "fg=[1;38;2;0;0;128m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "white" set "fg=[1;38;2;128;128;128m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "dim_black" set "fg=[1;38;2;64;64;64m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "dim_red" set "fg=[1;38;2;64;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "dim_yellow" set "fg=[1;38;2;64;64;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "dim_green" set "fg=[1;38;2;0;64;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "dim_blue" set "fg=[1;38;2;0;0;64m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_red" == "dim_white" set "fg=[1;38;2;64;64;64m" 
+
+h:\Users\emues\PycharmProjects\cdir>REM :: Background mapping  
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "bld_black" set "bg=[1;48;2;0;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "bld_red" set "bg=[1;48;2;255;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "bld_yellow" set "bg=[1;48;2;255;255;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "bld_green" set "bg=[1;48;2;0;255;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "bld_blue" set "bg=[1;48;2;0;0;255m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "bld_white" set "bg=[1;48;2;255;255;255m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "black" set "bg=[1;48;2;32;32;32m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "red" set "bg=[1;48;2;128;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "yellow" set "bg=[1;48;2;128;128;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "green" set "bg=[1;48;2;0;128;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "blue" set "bg=[1;48;2;0;0;128m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "white" set "bg=[1;48;2;128;128;128m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "dim_black" set "bg=[1;48;2;64;64;64m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "dim_red" set "bg=[1;48;2;64;0;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "dim_yellow" set "bg=[1;48;2;64;64;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "dim_green" set "bg=[1;48;2;0;64;0m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "dim_blue" set "bg=[1;48;2;0;0;64m" 
+
+h:\Users\emues\PycharmProjects\cdir>if /I "bld_black" == "dim_white" set "bg=[1;48;2;64;64;64m" 
+
+h:\Users\emues\PycharmProjects\cdir>if "[1;38;2;255;0;0m" == "[1;48;2;0;0;0m" (echo.   & echo [1;38;2;255;0;0mCannot specify same color for both foreground and background![0m  
+ echo  -> Text is [[1;38;2;255;0;0m"bld_red"[0m] and background is [[1;48;2;0;0;0m"bld_black"[0m]  
+ goto :end ) 
+
+h:\Users\emues\PycharmProjects\cdir>echo [0m[1;38;2;255;255;255mDisplaying "!file!" with text as [1;38;2;255;0;0m[1;48;2;0;0;0m"bld_red" on "bld_black"[0m. 
+[0m[1;38;2;255;255;255mDisplaying "h:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log.gz" with text as [1;38;2;255;0;0m[1;48;2;0;0;0m"bld_red" on "bld_black"[0m.
+
+h:\Users\emues\PycharmProjects\cdir>REM type "!file!"  
+
+h:\Users\emues\PycharmProjects\cdir>set /a n=0 
+
+h:\Users\emues\PycharmProjects\cdir>echo [1;38;2;255;0;0m[1;48;2;0;0;0m 
+[1;38;2;255;0;0m[1;48;2;0;0;0m
+
+h:\Users\emues\PycharmProjects\cdir>REM echo start=1 
+
+h:\Users\emues\PycharmProjects\cdir>REM echo end=10 
+
+h:\Users\emues\PycharmProjects\cdir>REM goto :eof 
+
+h:\Users\emues\PycharmProjects\cdir>REM echo OLD file="!file!" 
+
+h:\Users\emues\PycharmProjects\cdir>set "compressed_exts=.gz .gzip .tgz .tar.gz .jgz" 
+
+h:\Users\emues\PycharmProjects\cdir>for %D in (!compressed_exts!) do (if "!fext!" == "%D" (
+echo [%D]  
+ echo [!fext!]  
+ set "decompressed=true"  
+ echo [1;38;2;0;255;0mDe-compressing file --> !CLR_BLDWARN!!file!!CLR_BLDWARN!!  
+ gzip -d -k -v "!file!"   
+ echo [0m  
+  
+ set "file=!fdrive!!fpath!!fname!"  
+ if not exist "!file!" (
+echo [1;38;2;255;0;0mDe-compressed file not found --> [1;38;2;255;255;0m!file![0m  
+ goto :end 
+) 
+) ) 
+
+h:\Users\emues\PycharmProjects\cdir>(if "!fext!" == ".gz" (
+echo [.gz]  
+ echo [!fext!]  
+ set "decompressed=true"  
+ echo [1;38;2;0;255;0mDe-compressing file --> !CLR_BLDWARN!!file!!CLR_BLDWARN!!  
+ gzip -d -k -v "!file!"   
+ echo [0m  
+  
+ set "file=!fdrive!!fpath!!fname!"  
+ if not exist "!file!" (
+echo [1;38;2;255;0;0mDe-compressed file not found --> [1;38;2;255;255;0m!file![0m  
+ goto :end 
+) 
+) ) 
+[.gz]
+[.gz]
+[1;38;2;0;255;0mDe-compressing file --> [1;38;2;255;255;0mh:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log.gz[1;38;2;255;255;0m
+h:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log.gz:	 94.7% -- created h:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log
+[0m
+The system cannot find the drive specified.
+
+h:\Users\emues\PycharmProjects\cdir>(if "!fext!" == ".gzip" (
+echo [.gzip]  
+ echo [!fext!]  
+ set "decompressed=true"  
+ echo [1;38;2;0;255;0mDe-compressing file --> !CLR_BLDWARN!!file!!CLR_BLDWARN!!  
+ gzip -d -k -v "!file!"   
+ echo [0m  
+  
+ set "file=!fdrive!!fpath!!fname!"  
+ if not exist "!file!" (
+echo [1;38;2;255;0;0mDe-compressed file not found --> [1;38;2;255;255;0m!file![0m  
+ goto :end 
+) 
+) ) 
+
+h:\Users\emues\PycharmProjects\cdir>(if "!fext!" == ".tgz" (
+echo [.tgz]  
+ echo [!fext!]  
+ set "decompressed=true"  
+ echo [1;38;2;0;255;0mDe-compressing file --> !CLR_BLDWARN!!file!!CLR_BLDWARN!!  
+ gzip -d -k -v "!file!"   
+ echo [0m  
+  
+ set "file=!fdrive!!fpath!!fname!"  
+ if not exist "!file!" (
+echo [1;38;2;255;0;0mDe-compressed file not found --> [1;38;2;255;255;0m!file![0m  
+ goto :end 
+) 
+) ) 
+
+h:\Users\emues\PycharmProjects\cdir>(if "!fext!" == ".tar.gz" (
+echo [.tar.gz]  
+ echo [!fext!]  
+ set "decompressed=true"  
+ echo [1;38;2;0;255;0mDe-compressing file --> !CLR_BLDWARN!!file!!CLR_BLDWARN!!  
+ gzip -d -k -v "!file!"   
+ echo [0m  
+  
+ set "file=!fdrive!!fpath!!fname!"  
+ if not exist "!file!" (
+echo [1;38;2;255;0;0mDe-compressed file not found --> [1;38;2;255;255;0m!file![0m  
+ goto :end 
+) 
+) ) 
+
+h:\Users\emues\PycharmProjects\cdir>(if "!fext!" == ".jgz" (
+echo [.jgz]  
+ echo [!fext!]  
+ set "decompressed=true"  
+ echo [1;38;2;0;255;0mDe-compressing file --> !CLR_BLDWARN!!file!!CLR_BLDWARN!!  
+ gzip -d -k -v "!file!"   
+ echo [0m  
+  
+ set "file=!fdrive!!fpath!!fname!"  
+ if not exist "!file!" (
+echo [1;38;2;255;0;0mDe-compressed file not found --> [1;38;2;255;255;0m!file![0m  
+ goto :end 
+) 
+) ) 
+
+h:\Users\emues\PycharmProjects\cdir>echo [0m[1;38;2;255;0;255mstart <---------------------------------------------------------------[1;38;2;255;0;0m[1;48;2;0;0;0m 
+[0m[1;38;2;255;0;255mstart <---------------------------------------------------------------[1;38;2;255;0;0m[1;48;2;0;0;0m
+
+h:\Users\emues\PycharmProjects\cdir>set "leading=" 
+
+h:\Users\emues\PycharmProjects\cdir>set "rest=" 
+
+h:\Users\emues\PycharmProjects\cdir>REM echo NEW file="!file!" 
+
+h:\Users\emues\PycharmProjects\cdir>for /F "usebackq delims= eol=" %A in (!file!) do (
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=%A"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! %A ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=[38;5;226m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! [38;5;226m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m1[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m [38;5;226m
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=	Reading directories/files, please wait..."  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! 	Reading directories/files, please wait... ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m2[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m 	Reading directories/files, please wait...
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=[38;5;255m Volume in drive C is Win11VHD[0m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! [38;5;255m Volume in drive C is Win11VHD[0m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m3[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m [38;5;255m Volume in drive C is Win11VHD[0m
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=[38;5;255m Volume Serial Number is A639-5F17[0m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! [38;5;255m Volume Serial Number is A639-5F17[0m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m4[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m [38;5;255m Volume Serial Number is A639-5F17[0m
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw="  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg!  ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m5[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m 
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw= [38;5;255mDirectory of[38;5;99m c:\[0m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg!  [38;5;255mDirectory of[38;5;99m c:\[0m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m6[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m  [38;5;255mDirectory of[38;5;99m c:\[0m
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw="  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg!  ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m7[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m 
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=[38;5;244m         Tue 08/05/2025  05:18 PM    <DIR>          [38;5;99mBackupRDP	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! [38;5;244m         Tue 08/05/2025  05:18 PM    <DIR>          [38;5;99mBackupRDP	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m8[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m [38;5;244m         Tue 08/05/2025  05:18 PM    <DIR>          [38;5;99mBackupRDP	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=[38;5;244m         Sat 06/28/2025  05:40 PM    <DIR>          [38;5;99minetpub	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! [38;5;244m         Sat 06/28/2025  05:40 PM    <DIR>          [38;5;99minetpub	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m9[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m [38;5;244m         Sat 06/28/2025  05:40 PM    <DIR>          [38;5;99minetpub	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=[38;5;244m         Mon 06/30/2025  04:08 AM    <DIR>          [38;5;99mIntel	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! [38;5;244m         Mon 06/30/2025  04:08 AM    <DIR>          [38;5;99mIntel	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~0,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~0!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~1,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~1!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~2,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~2!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~3,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~3!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~4,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~4!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~5,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~5!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>if not defined rest (
+if "!num:~6,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~6!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+) 
+[1;38;2;255;255;0m[1;38;2;255;0;0m[1;38;2;255;255;0m10[1;38;2;255;0;0m]->[0m[1;38;2;255;0;0m [38;5;244m         Mon 06/30/2025  04:08 AM    <DIR>          [38;5;99mIntel	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m
+
+h:\Users\emues\PycharmProjects\cdir>(
+set /a n+=1  
+ REM echo leadingf=!leading!  
+ REM echo restf=!rest!  
+ REM echo !num!  
+ if !n! GEQ !startline! (if !n! LEQ !endline! (
+set "num=000000!n!"  
+ set "num=!num:~-7!"  
+ set "leading="  
+ set "rest="  
+ for /L %I in (0 1 6) do if not defined rest (
+if "!num:~%I,1!" == "0" (set "leading=!leading!" )  else (set "rest=!num:~%I!" )  
+ REM echo leading=!leading!  
+ REM echo rest=!rest! 
+)  
+ set "num=!CLR_BLDRED!!leading!!CLR_BLDYELLOW!!rest!"  
+ if /I "!noansi!" == "true" (
+set "line_raw=[38;5;244m         Tue 08/05/2025  05:05 PM    <DIR>          [38;5;99mMount	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m"  
+ call :strip_ps  
+ echo !CLR_BLDWHITE!!num!!CLR_BLDRED!]>!CLR_END! !cleaned! 
+)  else (echo !CLR_BLDYELLOW!!num!!CLR_BLDRED!]->!CLR_END!!fg! [38;5;244m         Tue 08/05/2025  05:05 PM    <DIR>          [38;5;99mMount	[38;5;239mr[38;5;255mh[38;5;239m[38;5;255ms[38;5;239m[38;5;255md[38;5;239mantcoe[38;5;255mi[38;5;239mrsxpu[0m ) 
+)  else (goto :continue ) ) 
+) 
+
+h:\Users\emues\PycharmProjects\cdir>echo [0m 
+[0m
+
+h:\Users\emues\PycharmProjects\cdir>echo [1;38;2;255;0;255mend <--------------------------------------------------------------- 
+[1;38;2;255;0;255mend <---------------------------------------------------------------
+
+h:\Users\emues\PycharmProjects\cdir>echo [0m 
+[0m
+
+h:\Users\emues\PycharmProjects\cdir>if /I "!decompressed!" == "true" (
+del "!file!"  
+ if exist !file! (
+echo [1;38;2;255;0;0mUnable to delete DE-compressed file --> "[1;38;2;255;255;0m!file![1;38;2;255;0;0m"  
+ REM goto :end 
+)  else (echo [1;38;2;0;255;0mDeleted DE-compressed file --> "[1;38;2;255;255;0m!file![1;38;2;0;255;0m" ) 
+) 
+[1;38;2;0;255;0mDeleted DE-compressed file --> "[1;38;2;255;255;0mh:\Users\emues\AppData\Local\Temp\cdir_all.20260106_103313.log[1;38;2;0;255;0m"
+
+h:\Users\emues\PycharmProjects\cdir>goto :end 
+
+h:\Users\emues\PycharmProjects\cdir>echo [1;38;2;255;255;255mStart: [1;38;2;0;255;0mWed 01/07/2026 20:43:16.52 [0m 
+[1;38;2;255;255;255mStart: [1;38;2;0;255;0mWed 01/07/2026 20:43:16.52 [0m
+
+h:\Users\emues\PycharmProjects\cdir>for /F "tokens=1-2 delims= " %a in ("Wed 01/07/2026") do set "end_date=%a %b" 
+
+h:\Users\emues\PycharmProjects\cdir>set "end_date=Wed 01/07/2026" 
+
+h:\Users\emues\PycharmProjects\cdir>for /F "tokens=1-2 delims= " %a in ("20:43:30.06") do set "end_time=%a %b" 
+
+h:\Users\emues\PycharmProjects\cdir>set "end_time=20:43:30.06 " 
+
+h:\Users\emues\PycharmProjects\cdir>echo [1;38;2;255;255;255mEnd:   [1;38;2;0;255;0mWed 01/07/2026 20:43:30.06 [0m 
+[1;38;2;255;255;255mEnd:   [1;38;2;0;255;0mWed 01/07/2026 20:43:30.06 [0m
+
+h:\Users\emues\PycharmProjects\cdir>echo [1;38;2;255;255;0mBye-bye.[0m 
+[1;38;2;255;255;0mBye-bye.[0m
+
+h:\Users\emues\PycharmProjects\cdir>call set_ansi_colors.bat /OFF  1>nul 
+
+h:\Users\emues\PycharmProjects\cdir>set "backcolor=" 
+
+h:\Users\emues\PycharmProjects\cdir>set "textcolor=" 
+
+h:\Users\emues\PycharmProjects\cdir>set "fg=" 
+
+h:\Users\emues\PycharmProjects\cdir>set "bg=" 
+
+h:\Users\emues\PycharmProjects\cdir>set "file=" 
+
+h:\Users\emues\PycharmProjects\cdir>endlocal
+
+h:\Users\emues\PycharmProjects\cdir>exit /b 
