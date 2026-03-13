@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# pyTest
+.benchmarks/
+
+# Virtual environments
+.venv/
+
+# IDE
+.idea/
+
+# Backups
+*.bak
+*.old
+*.log
+*.txt.bak
+
+# Build artifacts
+build/
+
+# MediaMonkey DB files
+MM.DB
+MM.DB.*
+MM.DB.gz
+
+# Temporary scripts
+delme*
