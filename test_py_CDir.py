@@ -15,8 +15,8 @@ from _pytest.fixtures import FixtureRequest
 # from pymediainfo import MediaInfo
 from graphics.graphics_ops import BColors
 
-from common_tools.common_tools import print_benchmark
-from common_tools.common_tools import py_test_run_guts
+from pytest_tools.pytest_tools import print_benchmark
+from pytest_tools.pytest_tools import py_test_run_guts
 
 # from io import StringIO
 # TODO: need to create py_test object to be used in houskeep and mm32, initially.
