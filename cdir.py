@@ -703,7 +703,7 @@ def main():
 
                 # print ttl size under size summary
                 print(f"{' '*7}{co.BLDWHITEFG}{'-' * 17}\n{' '*7}{num_color}{ttl_size:>17,} [{num_color}{get_short_size(ttl_size)}{co.BLDWHITEFG}]{co.DIMREDFG} ->{co.BLDWHITEFG} Total size{co.ENDC}") \
-                    if not no_size_sum else None
+                    if not no_size_sum else  None
 
         # if there is anything to cache, then save
         if ext_cache:
